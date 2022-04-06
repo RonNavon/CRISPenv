@@ -10,10 +10,12 @@
     }
   },
   "functions": [],
-  "variables": {},
+  "variables": {
+    "VnetName": "CrispVnet"
+  },
   "resources": [
 {
-  "name": "[parameters('EnvironmentName')]",
+  "name": "[concat(parameters('EnvironmentName'),'-',variables('VnetName'))]",
   "type": "Microsoft.Network/virtualNetworks",
   "apiVersion": "2020-11-01",
   "location": "[resourceGroup().location]",
