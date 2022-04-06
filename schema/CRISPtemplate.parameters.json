@@ -3,7 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "EnvironmentName": {
-            "value": "test" 
+            "value": "test"
+        },
+        "role": {
+            "value": "owner"
         }
     }
 }
