@@ -17,9 +17,7 @@
   "type": "Microsoft.Network/virtualNetworks",
   "apiVersion": "2020-11-01",
   "location": "[resourceGroup().location]",
-  "tags": {
-    "displayName": "virtualNetwork1"
-  },
+  "tags": {},
   "properties": {
     "addressSpace": {
       "addressPrefixes": [
