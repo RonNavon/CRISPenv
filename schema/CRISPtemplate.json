@@ -2,11 +2,10 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "EnvironmentName": {
+    "EnvironmentName": { "type": "string" },
+    "role": {
       "type": "string",
-      "metadata": {
-        "description": "acronyms of the new environment"
-      }
+      "defaultValue": "ron"
     }
   },
   "functions": [],
@@ -14,28 +13,28 @@
     "VnetName": "CrispVnet"
   },
   "resources": [
-{
-  "name": "[concat(parameters('EnvironmentName'),'-',variables('VnetName'))]",
-  "type": "Microsoft.Network/virtualNetworks",
-  "apiVersion": "2020-11-01",
-  "location": "[resourceGroup().location]",
-  "tags": {},
-  "properties": {
-    "addressSpace": {
-      "addressPrefixes": [
-        "10.0.0.0/16"
-      ]
-    },
-    "subnets": [
-      {
-        "name": "Subnet-1",
-        "properties": {
-          "addressPrefix": "10.0.0.0/24"
-        }
+    {
+      "name": "[concat(variables('VnetName'),'-',parameters('EnvironmentName'))]",
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2020-11-01",
+      "location": "[resourceGroup().location]",
+      "tags": {},
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "10.0.0.0/16"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[parameters('role')]",
+            "properties": {
+              "addressPrefix": "10.0.0.0/24"
+            }
+          }
+        ]
       }
-    ]
-  }
-}
+    }
   ],
   "outputs": {}
 }
