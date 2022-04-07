@@ -20,9 +20,9 @@
   },
   "resources": [
     {
-      "name": "OwnerRole",
-      "apiVersion": "2019-01-01",
-      "type": "Microsoft.Authorization/policyassignments",
+      "name": "ReaderRole",
+      "apiVersion": "2020-03-01-preview",
+      "type": "Microsoft.Authorization/roleAssignments",
       "properties": {
         "roleDefinitionId": "[variables('ReaderRole')]",
         "principalId": "[parameters('RonsUserID')]",
