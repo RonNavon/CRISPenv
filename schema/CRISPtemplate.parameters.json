@@ -5,8 +5,14 @@
         "EnvironmentName": {
             "value": "test"
         },
-        "role": {
-            "value": "owner"
+        "ApplicationRGname": {
+            "value": "Application"
+        },
+        "RonsUserID": {
+           "value": "65679ea9-8ee9-43f7-98d1-fcc840163ffe"
+        },
+        "Region": {
+            "value": "eastus"
         }
     }
 }
