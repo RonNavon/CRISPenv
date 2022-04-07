@@ -13,22 +13,23 @@
     },
     "Region": {
       "type": "string"
+    },
+    "Reader": {
+      "type": "string"
     }
   },
   "variables": {
-    "ReaderRole": "[concat(subscription().Id, '/providers/Microsoft.Authorization/roleDefinitions/9634362d-007e-4e55-9169-bd59c0552a61')]"
+    "ReaderRole": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Authorization/roleDefinitions/', parameters('Reader'))]"
   },
   "resources": [
-    {
-      "name": "ReaderRole",
-      "apiVersion": "2020-03-01-preview",
-      "type": "Microsoft.Authorization/roleAssignments",
-      "properties": {
-        "roleDefinitionId": "[variables('ReaderRole')]",
-        "principalId": "[parameters('RonsUserID')]",
-        "ObjectType": "User",
-        "scope": "[subscription().id]"
+      {
+        "type": "Microsoft.Authorization/roleAssignments",
+        "apiVersion": "2020-08-01-preview",
+        "name": "[guid(subscription().id)]",
+        "properties": {
+          "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', variables('ReaderRole'))]",
+          "principalId": "[parameters('RonsUserID')]"
+        }
       }
-    }
   ]
 }
