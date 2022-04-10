@@ -6,9 +6,7 @@
     "properties": {
         "blueprintId": "/providers/Microsoft.management/ManagmentGroups/Tenant Root Group/providers/Microsoft.Blueprint/blueprint",
         "resourceGroups": {},
-        "locks": {
-            "mode": ""
-        },
+        "locks": {},
         "parameters": {
             "defaultParameter": {
                 "value": "default"
