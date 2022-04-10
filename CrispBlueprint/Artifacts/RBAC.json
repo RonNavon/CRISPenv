@@ -6,7 +6,10 @@
             "573fb72c-9be1-4637-ba53-8cdc2e6c0c6d",
             "ced529a9-01b9-4127-b4e1-623178891df8"
         ],
-        "displayName": "Ron Navon (Ron.Navon@bynet.co.il) : Reader"
+        "displayName": [
+            "Ron Navon (Ron.Navon@bynet.co.il) : Reader",
+            "Shani Yona (Shani.Yona@bynet.co.il) : Reader"
+        ]
     },
     "type": "Microsoft.Blueprint/blueprints/artifacts",
     "name": "RbacAssignment"
