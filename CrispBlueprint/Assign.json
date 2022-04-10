@@ -1,7 +1,6 @@
 {
     "identity": {
-        "type": "SystemAssigned",
-        "tenantId": "b5f3202f-73b3-40a8-a61e-596ab18836ea"
+        "type": "SystemAssigned"
     },
     "location": "westeu",
     "properties": {
