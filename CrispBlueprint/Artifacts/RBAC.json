@@ -6,9 +6,7 @@
             "573fb72c-9be1-4637-ba53-8cdc2e6c0c6d",
             "ced529a9-01b9-4127-b4e1-623178891df8"
         ],
-        "displayName": [
-            "Users : Reader"
-        ]
+        "displayName": "CrispReaders : Reader"
     },
     "type": "Microsoft.Blueprint/blueprints/artifacts",
     "name": "RbacAssignment"
