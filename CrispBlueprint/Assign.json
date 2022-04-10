@@ -9,12 +9,7 @@
     "location": "westeu",
     "properties": {
         "blueprintId": "/providers/Microsoft.management/ManagmentGroups/Tenant Root Group/providers/Microsoft.Blueprint/blueprint",
-        "resourceGroups": {
-            "defaultRg": {
-                "name": "defaultRg",
-                "location": "westeu"
-            }
-        },
+        "resourceGroups": {},
         "locks": {
             "mode": ""
         },
