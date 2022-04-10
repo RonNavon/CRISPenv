@@ -1,9 +1,14 @@
 {
     "kind": "roleAssignment",
     "properties": {
-        "roleDefinitionId": "/subscriptions/60327e1f-6528-4368-8b35-ed6e547313e6/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
-        "principalIds": ["65679ea9-8ee9-43f7-98d1-fcc840163ffe"],
-        "displayName": "Reader"
+        "RoleAssignmentId": "2602cfb9-0e34-4009-b395-78fb372bc15e",
+        "Scope": "/subscriptions/60327e1f-6528-4368-8b35-ed6e547313e6",
+        "DisplayName": "Ron Navon",
+        "SignInName": "Ronn@bynet.co.il",
+        "RoleDefinitionName": "Contributor",
+        "RoleDefinitionId": "/subscriptions/60327e1f-6528-4368-8b35-ed6e547313e6/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
+        "ObjectId": "65679ea9-8ee9-43f7-98d1-fcc840163ffe",
+        "ObjectType": "User"
     },
     "type": "Microsoft.Blueprint/blueprints/artifacts",
     "name": "defaultRbacAssignment"
