@@ -5,7 +5,7 @@
         "principalIds": [
             "65679ea9-8ee9-43f7-98d1-fcc840163ffe"
         ],
-        "displayName": "Reader"
+        "displayName": "Ron Navon (Ron.Navon@bynet.co.il) : Reader"
     },
     "type": "Microsoft.Blueprint/blueprints/artifacts",
     "name": "defaultRbacAssignment"
