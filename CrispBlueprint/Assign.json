@@ -1,0 +1,27 @@
+{
+    "identity": {
+        "type": "userAssigned",
+        "tenantId": "b5f3202f-73b3-40a8-a61e-596ab18836ea",
+        "userAssignedIdentities": {
+            "/subscriptions/60327e1f-6528-4368-8b35-ed6e547313e6/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635": {}
+        }
+    },
+    "location": "westeu",
+    "properties": {
+        "blueprintId": "/providers/Microsoft.management/ManagmentGroups/Tenant Root Group/providers/Microsoft.Blueprint/blueprint",
+        "resourceGroups": {
+            "defaultRg": {
+                "name": "defaultRg",
+                "location": "westeu"
+            }
+        },
+        "locks": {
+            "mode": ""
+        },
+        "parameters": {
+            "defaultParameter": {
+                "value": "default"
+            }
+        }
+    }
+}

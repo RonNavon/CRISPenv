@@ -1,0 +1,11 @@
+{
+    "properties": {
+        "parameters": {},
+        "resourceGroups": {},
+        "targetScope": "subscription",
+        "description": "basic template to duplicate Crisp environment"
+    },
+    "id": "/subscriptions/60327e1f-6528-4368-8b35-ed6e547313e6/providers/Microsoft.Blueprint/blueprints/CrispEnvironment",
+    "type": "Microsoft.Blueprint/blueprints",
+    "name": "CrispEnvironment"
+}
