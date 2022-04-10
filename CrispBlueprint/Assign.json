@@ -9,8 +9,6 @@
         "locks": {
             "mode": "none"
         },
-        "parameters": {
-            "Readers": "573fb72c-9be1-4637-ba53-8cdc2e6c0c6d"
-        }
+        "parameters": {}
     }
 }

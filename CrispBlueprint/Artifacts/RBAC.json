@@ -3,7 +3,7 @@
     "properties": {
         "RoleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7",
         "principalIds": [
-            "[parameters('Readers')]"
+            "573fb72c-9be1-4637-ba53-8cdc2e6c0c6d"
         ],
         "displayName": "Ron Navon (Ron.Navon@bynet.co.il) : Reader"
     },

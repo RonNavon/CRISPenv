@@ -1,8 +1,6 @@
 {
     "properties": {
-        "parameters": {
-            "Readers":"string"
-        },
+        "parameters": {},
         "resourceGroups": {},
         "targetScope": "subscription",
         "description": "basic template to duplicate Crisp environment"
