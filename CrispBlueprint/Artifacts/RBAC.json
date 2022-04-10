@@ -1,7 +1,7 @@
 {
     "kind": "roleAssignment",
     "properties": {
-        "roleDefinitionId": "/subscriptions/4aba3e3b-da15-4689-99ad-c497abe16b32/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
+        "roleDefinitionId": "/subscriptions/60327e1f-6528-4368-8b35-ed6e547313e6/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
         "principalIds": ["65679ea9-8ee9-43f7-98d1-fcc840163ffe"],
         "displayName": "Reader"
     },
