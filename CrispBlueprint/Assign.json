@@ -2,7 +2,7 @@
     "identity": {
         "type": "SystemAssigned"
     },
-    "location": "westeu",
+    "location": "westeurope",
     "properties": {
         "blueprintId": "/providers/Microsoft.management/ManagmentGroups/Tenant Root Group/providers/Microsoft.Blueprint/blueprint",
         "resourceGroups": {},
