@@ -478,7 +478,7 @@
             "name": "[concat('CrispJuniper', parameters('Environment'), '/AzureNetworkWatcherExtension')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachines', 'CrispJuniper')]"
+                 "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Compute/virtualMachines/CrispJuniper',parameters('Environment'))]"
             ],
             "properties": {
                 "autoUpgradeMinorVersion": true,
