@@ -2,10 +2,10 @@
 # Deploy an Azure Resource Manager (ARM) template to a resource group and manage virtual machines
 - task: AzureResourceGroupDeployment@2
   inputs:
-    azureSubscription: '60327e1f-6528-4368-8b35-ed6e547313e6'
+    azureSubscription: 60327e1f-6528-4368-8b35-ed6e547313e6
     action: Create
-    resourceGroupName: 'Network'
-    location: 'westeu'
+    resourceGroupName: Network
+    location: westeu
     #templateLocation: 'Linked artifact' # Options: linked Artifact, uRL Of The File
     #csmFileLink: # Required when templateLocation == URL Of The File
     #csmParametersFileLink: # Optional
