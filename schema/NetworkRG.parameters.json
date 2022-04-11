@@ -2,8 +2,41 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "Environment":{
+        "Environment": {
             "value": "-test"
+        },
+        "SubscriptionID": {
+            "value": "60327e1f-6528-4368-8b35-ed6e547313e6"
+        },
+        "Vnet": {
+            "value": "CRISPNetwork"
+        },
+        "PublicIP-CrispJuniper": {
+            "value": "PublicIP-CrispJuniper"
+        },
+        "SUB-JuniperPrivate": {
+            "value": "JuniperPrivate"
+        },
+        "NIC-CrispJuniper": {
+            "value": "NIC-CrispJuniper"
+        },
+        "PublicIP-JuniperPublic1": {
+            "value": "PublicIP-JuniperPublic1"
+        },
+        "PublicIP-JuniperPublic2": {
+            "value": "PublicIP-JuniperPublic1"
+        },
+        "NIC-JuniperPublic1": {
+            "value": "NIC-JuniperPublic1"
+        },
+        "NIC-JuniperPublic2": {
+            "value": "NIC-JuniperPublic2"
+        },
+        "SUB-VDS": {
+            "value": "VDS"
+        },
+        "NSG-CrispJuniper": {
+            "value": "NSG-CrispJuniper"
         }
     }
 }
