@@ -24,7 +24,7 @@
             "value": "PublicIP-JuniperPublic1"
         },
         "PublicIP-JuniperPublic2": {
-            "value": "PublicIP-JuniperPublic1"
+            "value": "PublicIP-JuniperPublic2"
         },
         "NIC-JuniperPublic1": {
             "value": "NIC-JuniperPublic1"
