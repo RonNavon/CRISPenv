@@ -1,0 +1,481 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Environment": {
+            "type": "string"
+        },
+        "Vnet": {
+            "type": "String"
+        },
+        "NSG-AKS-externalid": {
+            "type": "String"
+        },
+        "NSG-GITLab-externalid": {
+            "type": "String"
+        },
+        "NSG-CrispJuniper-externalid": {
+            "type": "String"
+        },
+        "NSG-VDS-externalid": {
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2020-11-01",
+            "name": "[CONCAT(parameters('Vnet'), parameters('Environment'))]",
+            "location": "westeurope",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.1.0.0/16",
+                        "10.2.0.0/16",
+                        "10.4.0.0/24",
+                        "10.5.0.0/24",
+                        "10.6.0.0/24",
+                        "10.7.0.0/24",
+                        "10.8.0.0/24",
+                        "10.9.0.0/24",
+                        "10.11.0.0/16",
+                        "10.12.0.0/24",
+                        "10.13.0.0/24",
+                        "10.30.0.0/16",
+                        "10.40.0.0/16",
+                        "10.50.0.0/24",
+                        "10.60.0.0/24"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[CONCAT('AKS', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.1.0.0/16",
+                            "networkSecurityGroup": {
+                                "id": "[CONCAT(parameters('NSG-AKS-externalid'), parameters('Environment'))]"
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.AzureCosmosDB",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Disabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
+                    },
+                    {
+                        "name": "[CONCAT('AKSInternal', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.30.0.0/16",
+                            "networkSecurityGroup": {
+                                "id": "[CONCAT(parameters('NSG-AKS-externalid'), parameters('Environment'))]"
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
+                    },
+                    {
+                        "name": "AzureBastionSubnet",
+                        "properties": {
+                            "addressPrefix": "10.13.0.0/24",
+                            "serviceEndpoints": [],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
+                    },
+                    {
+                        "name": "GatewaySubnet",
+                        "properties": {
+                            "addressPrefix": "10.2.1.0/24",
+                            "serviceEndpoints": [],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
+                    },
+                    {
+                        "name": "[CONCAT('GITLab', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.9.0.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[parameters('NSG-GITLab-externalid')]"
+                            },
+                            "serviceEndpoints": [],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
+                    },
+                    {
+                        "name": "[CONCAT('JuniperPrivate', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.8.0.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[CONCAT(parameters('NSG-CrispJuniper-externalid'), parameters('Environment'))]"
+                            },
+                            "serviceEndpoints": [],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
+                    },
+                    {
+                        "name": "[CONCAT('JuniperPublic1', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.6.0.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[CONCAT(parameters('NSG-CrispJuniper-externalid'), parameters('Environment'))]"
+                            },
+                            "serviceEndpoints": [],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
+                    },
+                    {
+                        "name": "[CONCAT('JuniperPublic2', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.7.0.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[CONCAT(parameters('NSG-CrispJuniper-externalid'), parameters('Environment'))]"
+                            },
+                            "serviceEndpoints": [],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
+                    },
+                    {
+                        "name": "[CONCAT('VDS', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.2.0.0/24",
+                            "networkSecurityGroup": {
+                                "id": "[CONCAT(parameters('NSG-VDS-externalid'), parameters('Environment'))]"
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Disabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
+                    },
+                    {
+                        "name": "[CONCAT('VDSSub', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.12.0.0/24",
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
+                    },
+                    {
+                        "name": "[CONCAT('VnetIntegration', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.2.2.0/24",
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [
+                                {
+                                    "name": "delegation",
+                                    "properties": {
+                                        "serviceName": "Microsoft.Web/serverfarms"
+                                    }
+                                }
+                            ],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": [],
+                "enableDdosProtection": false
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2020-11-01",
+            "name": "[concat(parameters('Vnet'), '/AKS', parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.1.0.0/16",
+                "networkSecurityGroup": {
+                    "id": "[CONCAT(parameters('NSG-AKS-externalid'), parameters('Environment'))]"
+                },
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.AzureCosmosDB",
+                        "locations": [
+                            "*"
+                        ]
+                    },
+                    {
+                        "service": "Microsoft.Storage",
+                        "locations": [
+                            "westeurope",
+                            "northeurope"
+                        ]
+                    }
+                ],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Disabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2020-11-01",
+            "name": "[concat(parameters('Vnet'), '/AKSInternal', parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.30.0.0/16",
+                "networkSecurityGroup": {
+                    "id": "[CONCAT(parameters('NSG-AKS-externalid'), parameters('Environment'))]"
+                },
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.Storage",
+                        "locations": [
+                            "westeurope",
+                            "northeurope"
+                        ]
+                    }
+                ],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2020-11-01",
+            "name": "[concat(parameters('Vnet'), parameters('Environment'), '/AzureBastionSubnet')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.13.0.0/24",
+                "serviceEndpoints": [],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2020-11-01",
+            "name": "[concat(parameters('Vnet'), parameters('Environment'), '/GatewaySubnet')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.2.1.0/24",
+                "serviceEndpoints": [],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2020-11-01",
+            "name": "[concat(parameters('Vnet'), parameters('Environment'), '/GITLab', parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.9.0.0/24",
+                "networkSecurityGroup": {
+                    "id": "[CONCAT(parameters('NSG-GITLab-externalid'), parameters('Environment'))]"
+                },
+                "serviceEndpoints": [],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2020-11-01",
+            "name": "[concat(parameters('Vnet'), parameters('Environment'), '/JuniperPrivate', parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.8.0.0/24",
+                "networkSecurityGroup": {
+                    "id": "[CONCAT(parameters('NSG-CrispJuniper-externalid'), parameters('Environment'))]"
+                },
+                "serviceEndpoints": [],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2020-11-01",
+            "name": "[concat(parameters('Vnet'), parameters('Environment'), '/JuniperPublic1', parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.6.0.0/24",
+                "networkSecurityGroup": {
+                    "id": "[CONCAT(parameters('NSG-CrispJuniper-externalid'), parameters('Environment'))]"
+                },
+                "serviceEndpoints": [],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2020-11-01",
+            "name": "[concat(parameters('Vnet'), parameters('Environment'), '/JuniperPublic2', parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.7.0.0/24",
+                "networkSecurityGroup": {
+                    "id": "[CONCAT(parameters('NSG-CrispJuniper-externalid'), parameters('Environment'))]"
+                },
+                "serviceEndpoints": [],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2020-11-01",
+            "name": "[concat(parameters('Vnet'), parameters('Environment'), '/VDS', parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.2.0.0/24",
+                "networkSecurityGroup": {
+                    "id": "[CONCAT(parameters('NSG-VDS-externalid'), parameters('Environment'))]"
+                },
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.Storage",
+                        "locations": [
+                            "westeurope",
+                            "northeurope"
+                        ]
+                    }
+                ],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Disabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2020-11-01",
+            "name": "[concat(parameters('Vnet'), parameters('Environment'), '/VDSSub', parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.12.0.0/24",
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.Storage",
+                        "locations": [
+                            "westeurope",
+                            "northeurope"
+                        ]
+                    }
+                ],
+                "delegations": [],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2020-11-01",
+            "name": "[concat(parameters('Vnet'), parameters('Environment'), '/VnetIntegration', parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
+            ],
+            "properties": {
+                "addressPrefix": "10.2.2.0/24",
+                "serviceEndpoints": [
+                    {
+                        "service": "Microsoft.Storage",
+                        "locations": [
+                            "westeurope",
+                            "northeurope"
+                        ]
+                    }
+                ],
+                "delegations": [
+                    {
+                        "name": "delegation",
+                        "properties": {
+                            "serviceName": "Microsoft.Web/serverfarms"
+                        }
+                    }
+                ],
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+            }
+        }
+    ]
+}
