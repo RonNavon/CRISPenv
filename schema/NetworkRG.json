@@ -118,7 +118,7 @@
         {
             "type": "Microsoft.Network/dnszones/NS",
             "apiVersion": "2018-05-01",
-            "name": "crisp.com/@",
+            "name": "[concat('crisp.com', '/@')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/dnszones','crisp.com')]"
             ],
@@ -144,7 +144,7 @@
         {
             "type": "Microsoft.Network/dnszones/SOA",
             "apiVersion": "2018-05-01",
-            "name": "crisp.com/@",
+            "name": "[concat('crisp.com', '/@')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/dnszones','crisp.com')]"
             ],
