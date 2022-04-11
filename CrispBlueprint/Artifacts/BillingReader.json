@@ -1,0 +1,16 @@
+{
+    "kind": "roleAssignment",
+    "properties": {
+        "RoleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/fa23ad8b-c56e-40d8-ac0c-ce449e1d2c64",
+        "principalIds": [
+            "2b0ca7ca-93b4-4e1c-bc61-a8c83222355b",
+            "9989dff1-d1bf-4434-99e0-669a42cd3587",
+            "d2bb45a2-0b16-4886-8d76-c3b60b216167",
+            "bf661964-93f7-4c36-8866-d7a125150c53",
+            "a0618eb2-bc1b-4583-96f6-81e16c27e428"
+        ],
+        "displayName": "BillingReader : Billing Reader"
+    },
+    "type": "Microsoft.Blueprint/blueprints/artifacts",
+    "name": "RbacAssignment"
+}

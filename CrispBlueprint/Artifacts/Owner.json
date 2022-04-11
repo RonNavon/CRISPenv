@@ -1,0 +1,27 @@
+{
+    "kind": "roleAssignment",
+    "properties": {
+        "RoleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+        "principalIds": [
+            "09e1f1b3-8142-40b3-ae61-067b2c702e5f",
+            "edbab3c8-bc47-4dde-ba7d-6426aa7383d2",
+            "6ca5f478-3286-4cf7-82fc-ab59116c771d",
+            "89991c4c-acfd-4ee4-8507-1497ffca62c4",
+            "0d5cfbf0-0add-4458-a30e-d489e952fcc2",
+            "d8befe21-6fbd-4c4a-b6e4-e9890a90dd6f",
+            "49c070d6-bb45-4081-a37b-02e00eee24f1",
+            "1ab83d1c-12d3-4d6c-811c-f717d0d6ad0b",
+            "24fbc200-ddf9-4635-80bc-201706fac656",
+            "bf661964-93f7-4c36-8866-d7a125150c53",
+            "0ae91bae-af96-4a7d-8ed7-b6e287b4fc96",
+            "a0618eb2-bc1b-4583-96f6-81e16c27e428",
+            "65679ea9-8ee9-43f7-98d1-fcc840163ffe",
+            "9309d29b-6595-43fd-8a28-77f9963af963",
+            "abcdd0f3-10e9-43f1-87a7-881fb84eab56",
+            "62fde590-6c89-4626-bd2e-38a74ea8ac7b"
+        ],
+        "displayName": "Owner : Owner"
+    },
+    "type": "Microsoft.Blueprint/blueprints/artifacts",
+    "name": "RbacAssignment"
+}

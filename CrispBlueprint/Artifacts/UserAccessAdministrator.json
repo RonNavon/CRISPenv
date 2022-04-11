@@ -1,0 +1,12 @@
+{
+    "kind": "roleAssignment",
+    "properties": {
+        "RoleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/18d7d88d-d35e-4fb5-a5c3-7773c20a72d9",
+        "principalIds": [
+            "62fde590-6c89-4626-bd2e-38a74ea8ac7b"
+        ],
+        "displayName": "UserAccessAdministrator : User Access Administrator"
+    },
+    "type": "Microsoft.Blueprint/blueprints/artifacts",
+    "name": "RbacAssignment"
+}

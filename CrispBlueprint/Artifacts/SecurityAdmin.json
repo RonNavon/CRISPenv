@@ -1,0 +1,12 @@
+{
+    "kind": "roleAssignment",
+    "properties": {
+        "RoleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/fb1c8493-542b-48eb-b624-b4c8fea62acd",
+        "principalIds": [
+            "62fde590-6c89-4626-bd2e-38a74ea8ac7b"
+        ],
+        "displayName": "SecurityAdmin : Security Admin"
+    },
+    "type": "Microsoft.Blueprint/blueprints/artifacts",
+    "name": "RbacAssignment"
+}

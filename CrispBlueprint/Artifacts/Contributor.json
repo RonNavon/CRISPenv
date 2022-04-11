@@ -1,0 +1,30 @@
+{
+    "kind": "roleAssignment",
+    "properties": {
+        "RoleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
+        "principalIds": [
+            "7d0dc02f-6f4b-4b0a-9ffd-75244201e38d",
+            "543627f4-bc4f-4db5-ab82-fd0e15fd039c",
+            "8b04fe93-40c7-4e74-b9bf-23b09e3b8131",
+            "44b0da83-a894-480e-863c-bd22d85935be",
+            "3add30dc-b9ab-4f45-a4da-7f852e89172f",
+            "4b94087e-085b-4b14-93c0-873433a2952c",
+            "c7e6a438-c354-440d-8b0c-df8220b2b0ee",
+            "bc1b0dd4-c2ea-4de3-a494-8bca73516e72",
+            "0d5cfbf0-0add-4458-a30e-d489e952fcc2",
+            "debcf291-ece1-4a12-9e56-ee5c2ec4cfcf",
+            "95909dde-e9a1-4a6a-af30-d7285553ce90",
+            "e5c47416-587a-4d10-bd3d-64dff17ae6c2",
+            "2a926893-6173-41a2-ac06-ea6b4b60bffb",
+            "0ae91bae-af96-4a7d-8ed7-b6e287b4fc96",
+            "e96a906e-8ab6-4b6c-9e38-6c19b277dd6b",
+            "fe8e94be-9e80-489c-b334-537995926caf",
+            "3f360d6f-ea98-48f6-9f09-6c5cca9c02b8",
+            "577c0ef1-c428-46bc-911d-4ed48a72b4a9",
+            "13191580-33cd-4dd8-b77b-6d7224b7f806"
+        ],
+        "displayName": "Contributor : Contributor"
+    },
+    "type": "Microsoft.Blueprint/blueprints/artifacts",
+    "name": "RbacAssignment"
+}

@@ -3,10 +3,12 @@
     "properties": {
         "RoleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7",
         "principalIds": [
-            "573fb72c-9be1-4637-ba53-8cdc2e6c0c6d",
-            "ced529a9-01b9-4127-b4e1-623178891df8"
+            "be3f327b-8d90-461a-aac2-a72a54356f8a",
+            "631fd274-4b11-4908-b15f-dfb832c8db2e",
+            "40d8a586-8045-4e67-8a9f-97f9cac374c0",
+            "360aa82b-2531-4850-8cd4-f0ea554561a7"
         ],
-        "displayName": "CrispReaders : Reader"
+        "displayName": "Reader : Reader"
     },
     "type": "Microsoft.Blueprint/blueprints/artifacts",
     "name": "RbacAssignment"
