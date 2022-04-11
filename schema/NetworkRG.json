@@ -42,112 +42,112 @@
     "functions": [],
     "variables": {},
     "resources": [
-        // {
-        //     "name": "[concat(parameters('Vnet'), parameters('Environment'))]",
-        //     "type": "Microsoft.Network/virtualNetworks",
-        //     "apiVersion": "2020-11-01",
-        //     "location": "[resourceGroup().location]",
-        //     "tags": {},
-        //     "properties": {
-        //         "addressSpace": {
-        //             "addressPrefixes": [
-        //                 "10.1.0.0/16",
-        //                 "10.2.0.0/16",
-        //                 "10.4.0.0/24",
-        //                 "10.5.0.0/24",
-        //                 "10.6.0.0/24",
-        //                 "10.7.0.0/24",
-        //                 "10.8.0.0/24",
-        //                 "10.9.0.0/24",
-        //                 "10.11.0.0/16",
-        //                 "10.12.0.0/24",
-        //                 "10.13.0.0/24",
-        //                 "10.30.0.0/16",
-        //                 "10.40.0.0/16",
-        //                 "10.50.0.0/24",
-        //                 "10.60.0.0/24"
-        //             ]
-        //         },
-        //         "subnets": [
-        //             {
-        //                 "name": "[concat('AKS', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.1.0.0/16"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat('AKSInternal', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.30.0.0/16"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "AzureBastionSubnet",
-        //                 "properties": {
-        //                     "addressPrefix": "10.13.0.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "GatewaySubnet",
-        //                 "properties": {
-        //                     "addressPrefix": "10.2.1.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat('GITLab', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.9.0.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat(parameters('SUB-JuniperPrivate'), parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.8.0.0/24"
-        //                 }
+        {
+            "name": "[concat(parameters('Vnet'), parameters('Environment'))]",
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "tags": {},
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.1.0.0/16",
+                        "10.2.0.0/16",
+                        "10.4.0.0/24",
+                        "10.5.0.0/24",
+                        "10.6.0.0/24",
+                        "10.7.0.0/24",
+                        "10.8.0.0/24",
+                        "10.9.0.0/24",
+                        "10.11.0.0/16",
+                        "10.12.0.0/24",
+                        "10.13.0.0/24",
+                        "10.30.0.0/16",
+                        "10.40.0.0/16",
+                        "10.50.0.0/24",
+                        "10.60.0.0/24"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[concat('AKS', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.1.0.0/16"
+                        }
+                    },
+                    {
+                        "name": "[concat('AKSInternal', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.30.0.0/16"
+                        }
+                    },
+                    {
+                        "name": "AzureBastionSubnet",
+                        "properties": {
+                            "addressPrefix": "10.13.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "GatewaySubnet",
+                        "properties": {
+                            "addressPrefix": "10.2.1.0/24"
+                        }
+                    },
+                    {
+                        "name": "[concat('GITLab', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.9.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "[concat(parameters('SUB-JuniperPrivate'), parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.8.0.0/24"
+                        }
 
-        //             },
-        //             {
-        //                 "name": "[concat('JuniperPublic1', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.6.0.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat('JuniperPublic2', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.7.0.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat(parameters('SUB-VDS'), parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.2.0.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat('VDSSub', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.12.0.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat('VnetIntegration', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.2.2.0/24"
-        //                 }
-        //             }
-        //         ]
-        //     }
-        // },
-        // {
-        //     "name": "crisp.com",
-        //     "type": "Microsoft.Network/dnsZones",
-        //     "apiVersion": "2018-05-01",
-        //     "location": "global",
-        //     "properties": {
-        //         "zoneType": "Public"
-        //     }
-        // },
+                    },
+                    {
+                        "name": "[concat('JuniperPublic1', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.6.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "[concat('JuniperPublic2', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.7.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "[concat(parameters('SUB-VDS'), parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.2.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "[concat('VDSSub', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.12.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "[concat('VnetIntegration', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.2.2.0/24"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "crisp.com",
+            "type": "Microsoft.Network/dnsZones",
+            "apiVersion": "2018-05-01",
+            "location": "global",
+            "properties": {
+                "zoneType": "Public"
+            }
+        },
         {
             "name": "[concat(parameters('PublicIP-CrispJuniper'), parameters('Environment'))]",
             "type": "Microsoft.Network/publicIPAddresses",
@@ -394,6 +394,45 @@
                 }
             }
         },
+
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2020-05-01",
+            "name": "[concat('CrispJuniper-OsDisk', parameters('Environment'))]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "StandardSSD_LRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "osType": "Linux",
+                "hyperVGeneration": "V1",
+                "purchasePlan": {
+                    "name": "vsrx-azure-image-payg-b1",
+                    "publisher": "juniper-networks",
+                    "product": "vsrx-next-generation-firewall-payg"
+                },
+                "creationData": {
+                    "createOption": "FromImage",
+                    "imageReference": {
+                        "id":"[concat('/Subscriptions/',parameters('SubscriptionID'),'/Providers/Microsoft.Compute/Locations/westeurope/Publishers/juniper-networks/ArtifactTypes/VMImage/Offers/vsrx-next-generation-firewall-payg/Skus/vsrx-azure-image-payg-b1/Versions/20.2.21')]"
+                    }
+                },
+                "diskSizeGB": 18,
+                "diskIOPSReadWrite": 500,
+                "diskMBpsReadWrite": 60,
+                "encryption": {
+                    "type": "EncryptionAtRestWithPlatformKey"
+                },
+                "networkAccessPolicy": "AllowAll",
+                "publicNetworkAccess": "Enabled",
+                "diskState": "Attached"
+            }
+        },
+
+
+
+
         {
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2021-11-01",
@@ -422,7 +461,7 @@
                         "caching": "ReadWrite",
                         "managedDisk": {
                             "storageAccountType": "StandardSSD_LRS",
-                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Compute/disks/CrispJuniper-OsDisk')]"
+                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Compute/disks/CrispJuniper-OsDisk', parameters('Environment'))]"
                         },
                         "diskSizeGB": 18
                     },
