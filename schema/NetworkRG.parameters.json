@@ -17,6 +17,9 @@
         "SUB-JuniperPrivate": {
             "value": "JuniperPrivate"
         },
+        "SUB-JuniperPublic1": {
+            "value": "JuniperPublic1"
+        },
         "NIC-CrispJuniper": {
             "value": "NIC-CrispJuniper"
         },
