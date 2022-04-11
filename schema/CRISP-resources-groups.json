@@ -9,7 +9,7 @@
           "name": "resourceGroup",
           "type": "Microsoft.Resources/resourceGroups",
           "apiVersion": "2014-05-01",
-          "location": "easteu",
+          "location": "[subscription().location]",
           "dependsOn": [],
           "tags": {}
       }
