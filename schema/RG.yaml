@@ -2,7 +2,7 @@
       displayName: Deploy ARM Template
       inputs:
         deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: '21bda406-27bc-4197-a55c-40b0ab2cae34'
+        azureResourceManagerConnection: '70814890-ed98-4d62-8a51-ae969300e556'
         subscriptionId: '60327e1f-6528-4368-8b35-ed6e547313e6'
         action: 'Create Resource Group'
         resourceGroupName: "Network"
