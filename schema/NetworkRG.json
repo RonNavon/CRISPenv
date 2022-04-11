@@ -107,10 +107,9 @@
             }
         },
         {
-            "type": "Microsoft.Network/dnszones",
-            "apiVersion": "2018-05-01",
             "name": "crisp.com",
-
+            "type": "Microsoft.Network/dnsZones",
+            "apiVersion": "2018-05-01",
             "location": "global",
             "properties": {
                 "zoneType": "Public"
