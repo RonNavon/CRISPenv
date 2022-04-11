@@ -7,18 +7,6 @@
         },
         "Vnet": {
             "value": "CRISPNetwork"
-        },
-        "NSG-AKS-externalid": {
-            "value": "/subscriptions/6d8e62e8-1717-4002-bdc8-17c36dfbbf59/resourceGroups/Network-CRT/providers/Microsoft.Network/networkSecurityGroups/AKS"
-        },
-        "NSG-GITLab-externalid": {
-            "value": "/subscriptions/6d8e62e8-1717-4002-bdc8-17c36dfbbf59/resourceGroups/Network-CRT/providers/Microsoft.Network/networkSecurityGroups/GITLab"
-        },
-        "NSG-CrispJuniper-externalid": {
-            "value": "/subscriptions/6d8e62e8-1717-4002-bdc8-17c36dfbbf59/resourceGroups/Network-CRT/providers/Microsoft.Network/networkSecurityGroups/CrispJuniper-nsg"
-        },
-        "NSG-VDS-externalid": {
-            "value": "/subscriptions/6d8e62e8-1717-4002-bdc8-17c36dfbbf59/resourceGroups/Network-CRT/providers/Microsoft.Network/networkSecurityGroups/VDS"
         }
     }
 }
