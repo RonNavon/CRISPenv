@@ -4,16 +4,13 @@
     "parameters": {
         "Environment": {
             "type": "string"
-        },
-        "Vnet": {
-            "type": "string"
         }
     },
     "functions": [],
     "variables": {},
     "resources": [
         {
-            "name": "[concat(parameters('Vnet'), parameters('Environment'))]",
+            "name": "[concat('CRISPNetwork', parameters('Environment'))]",
             "type": "Microsoft.Network/virtualNetworks",
             "apiVersion": "2020-11-01",
             "location": "[resourceGroup().location]",
@@ -107,6 +104,63 @@
                         }
                     }
                 ]
+            }
+        },
+        {
+            "type": "Microsoft.Network/dnszones",
+            "apiVersion": "2018-05-01",
+            "name": "crisp.com",
+
+            "location": "global",
+            "properties": {
+                "zoneType": "Public"
+            }
+        },
+        {
+            "type": "Microsoft.Network/dnszones/NS",
+            "apiVersion": "2018-05-01",
+            "name": "crisp.com/@",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/dnszones','crisp.com')]"
+            ],
+            "properties": {
+                "TTL": 172800,
+                "NSRecords": [
+                    {
+                        "nsdname": "ns1-02.azure-dns.com."
+                    },
+                    {
+                        "nsdname": "ns2-02.azure-dns.net."
+                    },
+                    {
+                        "nsdname": "ns3-02.azure-dns.org."
+                    },
+                    {
+                        "nsdname": "ns4-02.azure-dns.info."
+                    }
+                ],
+                "targetResource": {}
+            }
+        },
+        {
+            "type": "Microsoft.Network/dnszones/SOA",
+            "apiVersion": "2018-05-01",
+            "name": "crisp.com/@",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/dnszones','crisp.com')]"
+            ],
+            "properties": {
+                "TTL": 3600,
+                "SOARecord": {
+                    "email": "azuredns-hostmaster.microsoft.com",
+                    "expireTime": 2419200,
+                    "host": "ns1-02.azure-dns.com.",
+                    "minimumTTL": 300,
+                    "refreshTime": 3600,
+                    "retryTime": 300,
+                    "serialNumber": 1
+                },
+                "targetResource": {}
             }
         }
     ],

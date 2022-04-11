@@ -4,9 +4,6 @@
     "parameters": {
         "Environment":{
             "value": "-test"
-        },
-        "Vnet": {
-            "value": "CRISPNetwork"
         }
     }
 }
