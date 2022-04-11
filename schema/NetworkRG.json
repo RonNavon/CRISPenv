@@ -313,60 +313,60 @@
         //         ]
         //     }
         // },
-        {
-            "name": "[concat(parameters('NIC-CrispJuniper'), parameters('Environment'))]",
-            "type": "Microsoft.Network/networkInterfaces",
-            "apiVersion": "2020-11-01",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "ipConfigurations": [
-                    {
-                        "name": "ipConfig1",
-                        "properties": {
-                            "privateIPAddress": "10.8.0.4",
-                            "privateIPAllocationMethod": "Static",
-                            "publicIPAddress": {
-                                "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-CrispJuniper'), parameters('Environment'))]"
-                            },
-                            "subnet": {
-                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPrivate'), parameters('Environment'))]"
-                            },
-                            "primary": true,
-                            "privateIPAddressVersion": "IPv4"
-                        }
-                    }
-                ],
-                "enableAcceleratedNetworking": false,
-                "enableIPForwarding": true
-            }
-        },
-        {
-            "name": "[concat(parameters('NIC-JuniperPublic1'), parameters('Environment'))]",
-            "type": "Microsoft.Network/networkInterfaces",
-            "apiVersion": "2020-11-01",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "ipConfigurations": [
-                    {
-                        "name": "ipConfig1",
-                        "properties": {
-                            "privateIPAddress": "10.6.0.4",
-                            "privateIPAllocationMethod": "Static",
-                            "publicIPAddress": {
-                                "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-JuniperPublic1'), parameters('Environment'))]"
-                            },
-                            "subnet": {
-                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPublic1'), parameters('Environment'))]"
-                            },
-                            "primary": true,
-                            "privateIPAddressVersion": "IPv4"
-                        }
-                    }
-                ],
-                "enableAcceleratedNetworking": false,
-                "enableIPForwarding": true
-            }
-        },
+        // {
+        //     "name": "[concat(parameters('NIC-CrispJuniper'), parameters('Environment'))]",
+        //     "type": "Microsoft.Network/networkInterfaces",
+        //     "apiVersion": "2020-11-01",
+        //     "location": "[resourceGroup().location]",
+        //     "properties": {
+        //         "ipConfigurations": [
+        //             {
+        //                 "name": "ipConfig1",
+        //                 "properties": {
+        //                     "privateIPAddress": "10.8.0.4",
+        //                     "privateIPAllocationMethod": "Static",
+        //                     "publicIPAddress": {
+        //                         "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-CrispJuniper'), parameters('Environment'))]"
+        //                     },
+        //                     "subnet": {
+        //                         "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPrivate'), parameters('Environment'))]"
+        //                     },
+        //                     "primary": true,
+        //                     "privateIPAddressVersion": "IPv4"
+        //                 }
+        //             }
+        //         ],
+        //         "enableAcceleratedNetworking": false,
+        //         "enableIPForwarding": true
+        //     }
+        // },
+        // {
+        //     "name": "[concat(parameters('NIC-JuniperPublic1'), parameters('Environment'))]",
+        //     "type": "Microsoft.Network/networkInterfaces",
+        //     "apiVersion": "2020-11-01",
+        //     "location": "[resourceGroup().location]",
+        //     "properties": {
+        //         "ipConfigurations": [
+        //             {
+        //                 "name": "ipConfig1",
+        //                 "properties": {
+        //                     "privateIPAddress": "10.6.0.4",
+        //                     "privateIPAllocationMethod": "Static",
+        //                     "publicIPAddress": {
+        //                         "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-JuniperPublic1'), parameters('Environment'))]"
+        //                     },
+        //                     "subnet": {
+        //                         "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPublic1'), parameters('Environment'))]"
+        //                     },
+        //                     "primary": true,
+        //                     "privateIPAddressVersion": "IPv4"
+        //                 }
+        //             }
+        //         ],
+        //         "enableAcceleratedNetworking": false,
+        //         "enableIPForwarding": true
+        //     }
+        // },
         {
             "name": "[concat(parameters('NIC-JuniperPublic2'), parameters('Environment'))]",
             "type": "Microsoft.Network/networkInterfaces",
@@ -383,7 +383,7 @@
                                 "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-JuniperPublic2'), parameters('Environment'))]"
                             },
                             "subnet": {
-                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'),'/subnets/', parameters('SUB-VDS'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-VDS'), parameters('Environment'))]"
                             },
                             "primary": true,
                             "privateIPAddressVersion": "IPv4"
@@ -393,49 +393,10 @@
                 "enableAcceleratedNetworking": false,
                 "enableIPForwarding": true,
                 "networkSecurityGroup": {
-                    "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'))]"
+                    "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network',parameters('Vnet'), parameters('Environment'),'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
                 }
             }
         },
-
-        {
-            "type": "Microsoft.Compute/disks",
-            "apiVersion": "2020-05-01",
-            "name": "[concat('CrispJuniper-OsDisk', parameters('Environment'))]",
-            "location": "[resourceGroup().location]",
-            "sku": {
-                "name": "StandardSSD_LRS",
-                "tier": "Standard"
-            },
-            "properties": {
-                "osType": "Linux",
-                "hyperVGeneration": "V1",
-                "purchasePlan": {
-                    "name": "vsrx-azure-image-payg-b1",
-                    "publisher": "juniper-networks",
-                    "product": "vsrx-next-generation-firewall-payg"
-                },
-                "creationData": {
-                    "createOption": "FromImage",
-                    "imageReference": {
-                        "id":"[concat('/Subscriptions/',parameters('SubscriptionID'),'/Providers/Microsoft.Compute/Locations/westeurope/Publishers/juniper-networks/ArtifactTypes/VMImage/Offers/vsrx-next-generation-firewall-payg/Skus/vsrx-azure-image-payg-b1/Versions/20.2.21')]"
-                    }
-                },
-                "diskSizeGB": 18,
-                "diskIOPSReadWrite": 500,
-                "diskMBpsReadWrite": 60,
-                "encryption": {
-                    "type": "EncryptionAtRestWithPlatformKey"
-                },
-                "networkAccessPolicy": "AllowAll",
-                "publicNetworkAccess": "Enabled",
-                "diskState": "Attached"
-            }
-        },
-
-
-
-
         {
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2021-11-01",
@@ -460,7 +421,7 @@
                     "osDisk": {
                         "osType": "Linux",
                         "name": "[concat('CrispJuniper', parameters('Environment'), 'CrispJuniper-OsDisk')]",
-                        "createOption": "Attach",
+                        "createOption": "FromImage",
                         "caching": "ReadWrite",
                         "managedDisk": {
                             "storageAccountType": "StandardSSD_LRS",
