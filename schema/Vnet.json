@@ -43,90 +43,68 @@
                         "name": "[concat('AKS', parameters('Environment'))]",
                         "properties": {
                             "addressPrefix": "10.1.0.0/16"
-                        },
-                        "privateEndpointNetworkPolicies": "Disabled",
-                        "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
                     },
                     {
                         "name": "[concat('AKSInternal', parameters('Environment'))]",
                         "properties": {
                             "addressPrefix": "10.30.0.0/16"
-                        },
-                        "privateEndpointNetworkPolicies": "Enabled",
-                        "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
                     },
                     {
                         "name": "AzureBastionSubnet",
                         "properties": {
                             "addressPrefix": "10.13.0.0/24"
-                        },
-                        "privateEndpointNetworkPolicies": "Enabled",
-                        "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
                     },
                     {
                         "name": "GatewaySubnet",
                         "properties": {
                             "addressPrefix": "10.2.1.0/24"
-                        },
-                        "privateEndpointNetworkPolicies": "Enabled",
-                        "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
                     },
                     {
                         "name": "[concat('GITLab', parameters('Environment'))]",
                         "properties": {
                             "addressPrefix": "10.9.0.0/24"
-                        },
-                        "privateEndpointNetworkPolicies": "Enabled",
-                        "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
                     },
                     {
                         "name": "[concat('JuniperPrivate', parameters('Environment'))]",
                         "properties": {
                             "addressPrefix": "10.8.0.0/24"
-                        },
-                        "privateEndpointNetworkPolicies": "Enabled",
-                        "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
 
                     },
                     {
                         "name": "[concat('JuniperPublic1', parameters('Environment'))]",
                         "properties": {
                             "addressPrefix": "10.6.0.0/24"
-                        },
-                        "privateEndpointNetworkPolicies": "Enabled",
-                        "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
                     },
                     {
                         "name": "[concat('JuniperPublic2', parameters('Environment'))]",
                         "properties": {
                             "addressPrefix": "10.7.0.0/24"
-                        },
-                        "privateEndpointNetworkPolicies": "Enabled",
-                        "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
                     },
                     {
                         "name": "[concat('VDS', parameters('Environment'))]",
                         "properties": {
                             "addressPrefix": "10.2.0.0/24"
-                        },
-                        "privateEndpointNetworkPolicies": "Disabled",
-                        "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
                     },
                     {
                         "name": "[concat('VDSSub', parameters('Environment'))]",
                         "properties": {
                             "addressPrefix": "10.12.0.0/24"
-                        },
-                        "privateEndpointNetworkPolicies": "Enabled",
-                        "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
                     },
                     {
                         "name": "[concat('VnetIntegration', parameters('Environment'))]",
                         "properties": {
                             "addressPrefix": "10.2.2.0/24"
-                        },
-                        "privateEndpointNetworkPolicies": "Enabled",
-                        "privateLinkServiceNetworkPolicies": "Enabled"
+                        }
                     }
                 ]
             }
