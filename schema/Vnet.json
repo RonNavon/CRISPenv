@@ -243,7 +243,7 @@
             "apiVersion": "2020-11-01",
             "name": "[concat(parameters('Vnet'), '/AKS', parameters('Environment'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'), parameters('Environment'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
             ],
             "properties": {
                 "addressPrefix": "10.1.0.0/16",
@@ -275,7 +275,7 @@
             "apiVersion": "2020-11-01",
             "name": "[concat(parameters('Vnet'), '/AKSInternal', parameters('Environment'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'), parameters('Environment'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
             ],
             "properties": {
                 "addressPrefix": "10.30.0.0/16",
@@ -301,7 +301,7 @@
             "apiVersion": "2020-11-01",
             "name": "[concat(parameters('Vnet'), parameters('Environment'), '/AzureBastionSubnet')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'), parameters('Environment'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
             ],
             "properties": {
                 "addressPrefix": "10.13.0.0/24",
@@ -316,7 +316,7 @@
             "apiVersion": "2020-11-01",
             "name": "[concat(parameters('Vnet'), parameters('Environment'), '/GatewaySubnet')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'), parameters('Environment'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
             ],
             "properties": {
                 "addressPrefix": "10.2.1.0/24",
@@ -331,7 +331,7 @@
             "apiVersion": "2020-11-01",
             "name": "[concat(parameters('Vnet'), parameters('Environment'), '/GITLab', parameters('Environment'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'), parameters('Environment'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
             ],
             "properties": {
                 "addressPrefix": "10.9.0.0/24",
@@ -349,7 +349,7 @@
             "apiVersion": "2020-11-01",
             "name": "[concat(parameters('Vnet'), parameters('Environment'), '/JuniperPrivate', parameters('Environment'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'), parameters('Environment'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
             ],
             "properties": {
                 "addressPrefix": "10.8.0.0/24",
@@ -367,7 +367,7 @@
             "apiVersion": "2020-11-01",
             "name": "[concat(parameters('Vnet'), parameters('Environment'), '/JuniperPublic1', parameters('Environment'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'), parameters('Environment'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
             ],
             "properties": {
                 "addressPrefix": "10.6.0.0/24",
@@ -385,7 +385,7 @@
             "apiVersion": "2020-11-01",
             "name": "[concat(parameters('Vnet'), parameters('Environment'), '/JuniperPublic2', parameters('Environment'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'), parameters('Environment'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
             ],
             "properties": {
                 "addressPrefix": "10.7.0.0/24",
@@ -403,7 +403,7 @@
             "apiVersion": "2020-11-01",
             "name": "[concat(parameters('Vnet'), parameters('Environment'), '/VDS', parameters('Environment'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'), parameters('Environment'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
             ],
             "properties": {
                 "addressPrefix": "10.2.0.0/24",
@@ -429,7 +429,7 @@
             "apiVersion": "2020-11-01",
             "name": "[concat(parameters('Vnet'), parameters('Environment'), '/VDSSub', parameters('Environment'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'), parameters('Environment'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
             ],
             "properties": {
                 "addressPrefix": "10.12.0.0/24",
@@ -452,7 +452,7 @@
             "apiVersion": "2020-11-01",
             "name": "[concat(parameters('Vnet'), parameters('Environment'), '/VnetIntegration', parameters('Environment'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'), parameters('Environment'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('Vnet'))]"
             ],
             "properties": {
                 "addressPrefix": "10.2.2.0/24",
