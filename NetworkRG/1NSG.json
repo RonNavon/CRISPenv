@@ -5,6 +5,48 @@
         "Environment": {
             "type": "string"
         },
+        "SubscriptionID": {
+            "type": "string"
+        },
+        "Vnet": {
+            "type": "string"
+        },
+        "PublicIP-CrispJuniper": {
+            "type": "string"
+        },
+        "PublicIP-JuniperPublic1": {
+            "type": "string"
+        },
+        "PublicIP-JuniperPublic2": {
+            "type": "string"
+        },
+        "PublicIP-CrispVPN": {
+            "type": "string"
+        },
+        "SUB-JuniperPrivate": {
+            "type": "string"
+        },
+        "SUB-JuniperPublic1": {
+            "type": "string"
+        },
+        "SUB-VDS": {
+            "type": "string"
+        },
+        "SUB-AKS": {
+            "type": "string"
+        },
+        "SUB-AKSInternal": {
+            "type": "string"
+        },
+        "NIC-JuniperPublic1": {
+            "type": "string"
+        },
+        "NIC-JuniperPublic2": {
+            "type": "string"
+        },
+        "NIC-CrispJuniper": {
+            "type": "string"
+        },
         "NSG-CrispJuniper": {
             "type": "string"
         },
@@ -15,6 +57,9 @@
             "type": "string"
         },
         "NSG-VDS": {
+            "type": "string"
+        },
+        "RT-VDSRoute": {
             "type": "string"
         }
     },
