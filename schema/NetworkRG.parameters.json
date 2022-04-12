@@ -48,7 +48,7 @@
             "value": "NSG-CrispJuniper"
         },
         "NSG-AKS": {
-            "value": "NSG-AKS-"
+            "value": "NSG-AKS"
         },
         "NSG-GITLab": {
             "value": "NSG-GITLab"
