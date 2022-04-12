@@ -45,328 +45,328 @@
     "functions": [],
     "variables": {},
     "resources": [
-        // {
-        //     "name": "[concat(parameters('Vnet'), parameters('Environment'))]",
-        //     "type": "Microsoft.Network/virtualNetworks",
-        //     "apiVersion": "2020-11-01",
-        //     "location": "[resourceGroup().location]",
-        //     "tags": {},
-        //     "properties": {
-        //         "addressSpace": {
-        //             "addressPrefixes": [
-        //                 "10.1.0.0/16",
-        //                 "10.2.0.0/16",
-        //                 "10.4.0.0/24",
-        //                 "10.5.0.0/24",
-        //                 "10.6.0.0/24",
-        //                 "10.7.0.0/24",
-        //                 "10.8.0.0/24",
-        //                 "10.9.0.0/24",
-        //                 "10.11.0.0/16",
-        //                 "10.12.0.0/24",
-        //                 "10.13.0.0/24",
-        //                 "10.30.0.0/16",
-        //                 "10.40.0.0/16",
-        //                 "10.50.0.0/24",
-        //                 "10.60.0.0/24"
-        //             ]
-        //         },
-        //         "subnets": [
-        //             {
-        //                 "name": "[concat('AKS', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.1.0.0/16"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat('AKSInternal', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.30.0.0/16"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "AzureBastionSubnet",
-        //                 "properties": {
-        //                     "addressPrefix": "10.13.0.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "GatewaySubnet",
-        //                 "properties": {
-        //                     "addressPrefix": "10.2.1.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat('GITLab', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.9.0.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat(parameters('SUB-JuniperPrivate'), parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.8.0.0/24"
-        //                 }
+        {
+            "name": "[concat(parameters('Vnet'), parameters('Environment'))]",
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "tags": {},
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.1.0.0/16",
+                        "10.2.0.0/16",
+                        "10.4.0.0/24",
+                        "10.5.0.0/24",
+                        "10.6.0.0/24",
+                        "10.7.0.0/24",
+                        "10.8.0.0/24",
+                        "10.9.0.0/24",
+                        "10.11.0.0/16",
+                        "10.12.0.0/24",
+                        "10.13.0.0/24",
+                        "10.30.0.0/16",
+                        "10.40.0.0/16",
+                        "10.50.0.0/24",
+                        "10.60.0.0/24"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[concat('AKS', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.1.0.0/16"
+                        }
+                    },
+                    {
+                        "name": "[concat('AKSInternal', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.30.0.0/16"
+                        }
+                    },
+                    {
+                        "name": "AzureBastionSubnet",
+                        "properties": {
+                            "addressPrefix": "10.13.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "GatewaySubnet",
+                        "properties": {
+                            "addressPrefix": "10.2.1.0/24"
+                        }
+                    },
+                    {
+                        "name": "[concat('GITLab', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.9.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "[concat(parameters('SUB-JuniperPrivate'), parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.8.0.0/24"
+                        }
 
-        //             },
-        //             {
-        //                 "name": "[concat(parameters('SUB-JuniperPublic1'), parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.6.0.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat('JuniperPublic2', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.7.0.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat(parameters('SUB-VDS'), parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.2.0.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat('VDSSub', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.12.0.0/24"
-        //                 }
-        //             },
-        //             {
-        //                 "name": "[concat('VnetIntegration', parameters('Environment'))]",
-        //                 "properties": {
-        //                     "addressPrefix": "10.2.2.0/24"
-        //                 }
-        //             }
-        //         ]
-        //     }
-        // },
-        // {
-        //     "name": "crisp.com",
-        //     "type": "Microsoft.Network/dnsZones",
-        //     "apiVersion": "2018-05-01",
-        //     "location": "global",
-        //     "properties": {
-        //         "zoneType": "Public"
-        //     }
-        // },
-        // {
-        //     "name": "[concat(parameters('PublicIP-CrispJuniper'), parameters('Environment'))]",
-        //     "type": "Microsoft.Network/publicIPAddresses",
-        //     "apiVersion": "2020-11-01",
-        //     "location": "[resourceGroup().location]",
-        //     "sku": {
-        //         "name": "Basic",
-        //         "tier": "Regional"
-        //     },
-        //     "properties": {
-        //         "publicIPAddressVersion": "IPv4",
-        //         "publicIPAllocationMethod": "Static",
-        //         "idleTimeoutInMinutes": 4
-        //     }
-        // },
-        // {
-        //     "name": "[concat(parameters('PublicIP-JuniperPublic1'), parameters('Environment'))]",
-        //     "type": "Microsoft.Network/publicIPAddresses",
-        //     "apiVersion": "2020-11-01",
-        //     "location": "[resourceGroup().location]",
-        //     "sku": {
-        //         "name": "Basic",
-        //         "tier": "Regional"
-        //     },
-        //     "properties": {
-        //         "publicIPAddressVersion": "IPv4",
-        //         "publicIPAllocationMethod": "Static",
-        //         "idleTimeoutInMinutes": 4
-        //     }
-        // },
-        // {
-        //     "name": "[concat(parameters('PublicIP-JuniperPublic2'), parameters('Environment'))]",
-        //     "type": "Microsoft.Network/publicIPAddresses",
-        //     "apiVersion": "2020-11-01",
-        //     "location": "[resourceGroup().location]",
-        //     "sku": {
-        //         "name": "Basic",
-        //         "tier": "Regional"
-        //     },
-        //     "properties": {
-        //         "publicIPAddressVersion": "IPv4",
-        //         "publicIPAllocationMethod": "Static",
-        //         "idleTimeoutInMinutes": 4
-        //     }
-        // },
-        //  {
-        //     "name": "[concat(parameters('NSG-CrispJuniper'), parameters('Environment'))]",
-        //     "type": "Microsoft.Network/networkSecurityGroups",
-        //     "apiVersion": "2020-11-01",
-        //     "location": "[resourceGroup().location]",
-        //     "properties": {
-        //         "securityRules": [
-        //             {
-        //                 "name": "Unicast_VLAN6",
-        //                 "properties": {
-        //                     "protocol": "UDP",
-        //                     "sourcePortRange": "0-65000",
-        //                     "destinationPortRange": "7601-7604",
-        //                     "sourceAddressPrefix": "92.200.6.0/24",
-        //                     "destinationAddressPrefix": "10.12.0.4",
-        //                     "access": "Allow",
-        //                     "priority": 200,
-        //                     "direction": "Inbound",
-        //                     "sourcePortRanges": [],
-        //                     "destinationPortRanges": [],
-        //                     "sourceAddressPrefixes": [],
-        //                     "destinationAddressPrefixes": []
-        //                 }
-        //             },
-        //             {
-        //                 "name": "Unicast_VLAN_1",
-        //                 "properties": {
-        //                     "protocol": "UDP",
-        //                     "sourcePortRange": "0-65000",
-        //                     "destinationPortRange": "6040",
-        //                     "sourceAddressPrefix": "91.220.0.0/16",
-        //                     "destinationAddressPrefix": "10.12.0.4",
-        //                     "access": "Allow",
-        //                     "priority": 210,
-        //                     "direction": "Inbound",
-        //                     "sourcePortRanges": [],
-        //                     "destinationPortRanges": [],
-        //                     "sourceAddressPrefixes": [],
-        //                     "destinationAddressPrefixes": []
-        //                 }
-        //             },
-        //             {
-        //                 "name": "Unicast_VLAN4",
-        //                 "properties": {
-        //                     "protocol": "UDP",
-        //                     "sourcePortRange": "0-65000",
-        //                     "destinationPortRange": "712",
-        //                     "sourceAddressPrefix": "91.100.0.0/16",
-        //                     "destinationAddressPrefix": "10.12.0.4",
-        //                     "access": "Allow",
-        //                     "priority": 220,
-        //                     "direction": "Inbound",
-        //                     "sourcePortRanges": [],
-        //                     "destinationPortRanges": [],
-        //                     "sourceAddressPrefixes": [],
-        //                     "destinationAddressPrefixes": []
-        //                 }
-        //             },
-        //             {
-        //                 "name": "IPsec_and_IKE",
-        //                 "properties": {
-        //                     "protocol": "UDP",
-        //                     "sourcePortRange": "0-65000",
-        //                     "destinationAddressPrefix": "10.6.0.4",
-        //                     "access": "Allow",
-        //                     "priority": 110,
-        //                     "direction": "Inbound",
-        //                     "sourcePortRanges": [],
-        //                     "destinationPortRanges": [
-        //                         "500",
-        //                         "4500"
-        //                     ],
-        //                     "sourceAddressPrefixes": [
-        //                         "82.166.125.178/32",
-        //                         "78.133.126.2/32",
-        //                         "78.133.126.4/32"
-        //                     ],
-        //                     "destinationAddressPrefixes": []
-        //                 }
-        //             },
-        //             {
-        //                 "name": "HQ_DEMO",
-        //                 "properties": {
-        //                     "protocol": "UDP",
-        //                     "sourcePortRange": "0-65000",
-        //                     "destinationPortRange": "7770-7773",
-        //                     "sourceAddressPrefix": "VirtualNetwork",
-        //                     "destinationAddressPrefix": "30.0.0.30",
-        //                     "access": "Allow",
-        //                     "priority": 230,
-        //                     "direction": "Inbound",
-        //                     "sourcePortRanges": [],
-        //                     "destinationPortRanges": [],
-        //                     "sourceAddressPrefixes": [],
-        //                     "destinationAddressPrefixes": []
-        //                 }
-        //             },
-        //             {
-        //                 "name": "HQ_DEMO_OUT",
-        //                 "properties": {
-        //                     "protocol": "UDP",
-        //                     "sourcePortRange": "*",
-        //                     "destinationPortRange": "7770-7772",
-        //                     "sourceAddressPrefix": "VirtualNetwork",
-        //                     "destinationAddressPrefix": "30.0.0.30",
-        //                     "access": "Allow",
-        //                     "priority": 100,
-        //                     "direction": "Outbound",
-        //                     "sourcePortRanges": [],
-        //                     "destinationPortRanges": [],
-        //                     "sourceAddressPrefixes": [],
-        //                     "destinationAddressPrefixes": []
-        //                 }
-        //             }
-        //         ]
-        //     }
-        // },
-        // {
-        //     "name": "[concat(parameters('NIC-CrispJuniper'), parameters('Environment'))]",
-        //     "type": "Microsoft.Network/networkInterfaces",
-        //     "apiVersion": "2020-11-01",
-        //     "location": "[resourceGroup().location]",
-        //     "properties": {
-        //         "ipConfigurations": [
-        //             {
-        //                 "name": "ipConfig1",
-        //                 "properties": {
-        //                     "privateIPAddress": "10.8.0.4",
-        //                     "privateIPAllocationMethod": "Static",
-        //                     "publicIPAddress": {
-        //                         "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-CrispJuniper'), parameters('Environment'))]"
-        //                     },
-        //                     "subnet": {
-        //                         "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPrivate'), parameters('Environment'))]"
-        //                     },
-        //                     "primary": true,
-        //                     "privateIPAddressVersion": "IPv4"
-        //                 }
-        //             }
-        //         ],
-        //         "enableAcceleratedNetworking": false,
-        //         "enableIPForwarding": true
-        //     }
-        // },
-        // {
-        //     "name": "[concat(parameters('NIC-JuniperPublic1'), parameters('Environment'))]",
-        //     "type": "Microsoft.Network/networkInterfaces",
-        //     "apiVersion": "2020-11-01",
-        //     "location": "[resourceGroup().location]",
-        //     "properties": {
-        //         "ipConfigurations": [
-        //             {
-        //                 "name": "ipConfig1",
-        //                 "properties": {
-        //                     "privateIPAddress": "10.6.0.4",
-        //                     "privateIPAllocationMethod": "Static",
-        //                     "publicIPAddress": {
-        //                         "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-JuniperPublic1'), parameters('Environment'))]"
-        //                     },
-        //                     "subnet": {
-        //                         "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPublic1'), parameters('Environment'))]"
-        //                     },
-        //                     "primary": true,
-        //                     "privateIPAddressVersion": "IPv4"
-        //                 }
-        //             }
-        //         ],
-        //         "enableAcceleratedNetworking": false,
-        //         "enableIPForwarding": true
-        //     }
-        // },
+                    },
+                    {
+                        "name": "[concat(parameters('SUB-JuniperPublic1'), parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.6.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "[concat('JuniperPublic2', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.7.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "[concat(parameters('SUB-VDS'), parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.2.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "[concat('VDSSub', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.12.0.0/24"
+                        }
+                    },
+                    {
+                        "name": "[concat('VnetIntegration', parameters('Environment'))]",
+                        "properties": {
+                            "addressPrefix": "10.2.2.0/24"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "crisp.com",
+            "type": "Microsoft.Network/dnsZones",
+            "apiVersion": "2018-05-01",
+            "location": "global",
+            "properties": {
+                "zoneType": "Public"
+            }
+        },
+        {
+            "name": "[concat(parameters('PublicIP-CrispJuniper'), parameters('Environment'))]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4
+            }
+        },
+        {
+            "name": "[concat(parameters('PublicIP-JuniperPublic1'), parameters('Environment'))]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4
+            }
+        },
+        {
+            "name": "[concat(parameters('PublicIP-JuniperPublic2'), parameters('Environment'))]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4
+            }
+        },
+         {
+            "name": "[concat(parameters('NSG-CrispJuniper'), parameters('Environment'))]",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "Unicast_VLAN6",
+                        "properties": {
+                            "protocol": "UDP",
+                            "sourcePortRange": "0-65000",
+                            "destinationPortRange": "7601-7604",
+                            "sourceAddressPrefix": "92.200.6.0/24",
+                            "destinationAddressPrefix": "10.12.0.4",
+                            "access": "Allow",
+                            "priority": 200,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Unicast_VLAN_1",
+                        "properties": {
+                            "protocol": "UDP",
+                            "sourcePortRange": "0-65000",
+                            "destinationPortRange": "6040",
+                            "sourceAddressPrefix": "91.220.0.0/16",
+                            "destinationAddressPrefix": "10.12.0.4",
+                            "access": "Allow",
+                            "priority": 210,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "Unicast_VLAN4",
+                        "properties": {
+                            "protocol": "UDP",
+                            "sourcePortRange": "0-65000",
+                            "destinationPortRange": "712",
+                            "sourceAddressPrefix": "91.100.0.0/16",
+                            "destinationAddressPrefix": "10.12.0.4",
+                            "access": "Allow",
+                            "priority": 220,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "IPsec_and_IKE",
+                        "properties": {
+                            "protocol": "UDP",
+                            "sourcePortRange": "0-65000",
+                            "destinationAddressPrefix": "10.6.0.4",
+                            "access": "Allow",
+                            "priority": 110,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [
+                                "500",
+                                "4500"
+                            ],
+                            "sourceAddressPrefixes": [
+                                "82.166.125.178/32",
+                                "78.133.126.2/32",
+                                "78.133.126.4/32"
+                            ],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "HQ_DEMO",
+                        "properties": {
+                            "protocol": "UDP",
+                            "sourcePortRange": "0-65000",
+                            "destinationPortRange": "7770-7773",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "30.0.0.30",
+                            "access": "Allow",
+                            "priority": 230,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "HQ_DEMO_OUT",
+                        "properties": {
+                            "protocol": "UDP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "7770-7772",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "30.0.0.30",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "[concat(parameters('NIC-CrispJuniper'), parameters('Environment'))]",
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipConfig1",
+                        "properties": {
+                            "privateIPAddress": "10.8.0.4",
+                            "privateIPAllocationMethod": "Static",
+                            "publicIPAddress": {
+                                "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-CrispJuniper'), parameters('Environment'))]"
+                            },
+                            "subnet": {
+                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPrivate'), parameters('Environment'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": true
+            }
+        },
+        {
+            "name": "[concat(parameters('NIC-JuniperPublic1'), parameters('Environment'))]",
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipConfig1",
+                        "properties": {
+                            "privateIPAddress": "10.6.0.4",
+                            "privateIPAllocationMethod": "Static",
+                            "publicIPAddress": {
+                                "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-JuniperPublic1'), parameters('Environment'))]"
+                            },
+                            "subnet": {
+                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPublic1'), parameters('Environment'))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": true
+            }
+        },
         {
             "name": "[concat(parameters('NIC-JuniperPublic2'), parameters('Environment'))]",
             "type": "Microsoft.Network/networkInterfaces",
