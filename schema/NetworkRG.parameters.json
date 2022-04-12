@@ -14,20 +14,29 @@
         "PublicIP-CrispJuniper": {
             "value": "PublicIP-CrispJuniper"
         },
+        "PublicIP-JuniperPublic1": {
+            "value": "PublicIP-JuniperPublic1"
+        },
+        "PublicIP-JuniperPublic2": {
+            "value": "PublicIP-JuniperPublic2"
+        },
         "SUB-JuniperPrivate": {
             "value": "JuniperPrivate"
         },
         "SUB-JuniperPublic1": {
             "value": "JuniperPublic1"
         },
+        "SUB-VDS": {
+            "value": "VDS"
+        },
+        "SUB-AKS": {
+            "value": "AKS"
+        },
+        "SUB-AKSInternal": {
+            "value": "AKSInternal"
+        },
         "NIC-CrispJuniper": {
             "value": "NIC-CrispJuniper"
-        },
-        "PublicIP-JuniperPublic1": {
-            "value": "PublicIP-JuniperPublic1"
-        },
-        "PublicIP-JuniperPublic2": {
-            "value": "PublicIP-JuniperPublic2"
         },
         "NIC-JuniperPublic1": {
             "value": "NIC-JuniperPublic1"
@@ -35,11 +44,17 @@
         "NIC-JuniperPublic2": {
             "value": "NIC-JuniperPublic2"
         },
-        "SUB-VDS": {
-            "value": "VDS"
-        },
         "NSG-CrispJuniper": {
             "value": "NSG-CrispJuniper"
+        },
+        "NSG-AKS": {
+            "value": "NSG-AKS-"
+        },
+        "NSG-GITLab": {
+            "value": "NSG-GITLab"
+        },
+        "NSG-VDS": {
+            "value": "NSG-VDS"
         }
     }
 }
