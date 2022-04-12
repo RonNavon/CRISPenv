@@ -136,17 +136,6 @@
                     "aadAudience": "41b23e61-6c1e-4545-b367-cd054e0ed4b4",
                     "aadIssuer": "https://sts.windows.net/b5f3202f-73b3-40a8-a61e-596ab18836ea/"
                 },
-                "bgpSettings": {
-                    "asn": 65515,
-                    "bgpPeeringAddress": "10.2.1.254",
-                    "peerWeight": 0,
-                    "bgpPeeringAddresses": [
-                        {
-                            "ipconfigurationId": "[concat(resourceId('Microsoft.Network/virtualNetworkGateways', 'CrispVPN', parameters('Environment')), '/ipConfigurations/vnetGatewayConfig')]",
-                            "customBgpIpAddresses": []
-                        }
-                    ]
-                },
                 "vpnGatewayGeneration": "Generation1"
             }
         }
