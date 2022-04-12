@@ -20,6 +20,9 @@
         "PublicIP-JuniperPublic2": {
             "value": "PublicIP-JuniperPublic2"
         },
+        "PublicIP-CrispVPN": {
+            "value": "PublicIP-CrispVPN"
+        },
         "SUB-JuniperPrivate": {
             "value": "JuniperPrivate"
         },
@@ -55,6 +58,9 @@
         },
         "NSG-VDS": {
             "value": "NSG-VDS"
+        },
+        "RT-VDSRoute": {
+            "value": "VDSRoute"
         }
     }
 }

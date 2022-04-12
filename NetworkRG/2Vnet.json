@@ -20,6 +20,9 @@
         "PublicIP-JuniperPublic2": {
             "type": "string"
         },
+        "PublicIP-CrispVPN": {
+            "type": "string"
+        },
         "SUB-JuniperPrivate": {
             "type": "string"
         },
@@ -54,6 +57,9 @@
             "type": "string"
         },
         "NSG-VDS": {
+            "type": "string"
+        },
+        "RT-VDSRoute": {
             "type": "string"
         }
     },
@@ -232,6 +238,21 @@
             }
         },
         {
+            "name": "[concat(parameters('PublicIP-CrispVPN'), parameters('Environment'))]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4
+            }
+        },
+        {
             "name": "[concat(parameters('NIC-CrispJuniper'), parameters('Environment'))]",
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2020-11-01",
@@ -314,7 +335,27 @@
                     "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network',parameters('Environment'),'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
                 }
             }
+        },
+    {
+        "name": "[concat(parameters('RT-VDSRoute'), parameters('Environment'))]",
+        "type": "Microsoft.Network/routeTables",
+        "apiVersion": "2020-11-01",
+        "location": "[resourceGroup().location]",
+        "tags": {},
+        "properties": {
+            "routes": [
+                {
+                    "name": "To_SRX_300_LAN",
+                    "properties": {
+                        "addressPrefix": "92.200.0.0/16",
+                        "nextHopType": "VirtualAppliance",
+                        "nextHopIpAddress": "10.2.0.8"
+                    }
+                }
+            ],
+            "disableBgpRoutePropagation": true
         }
+    }
     ],
     "outputs": {}
 }
