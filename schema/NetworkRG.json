@@ -402,6 +402,9 @@
             "apiVersion": "2021-11-01",
             "name": "[concat('CrispJuniper', parameters('Environment'))]",
             "location": "[resourceGroup().location]",
+            "identity": {
+                "type": "None"
+            },
             "plan": {
                 "name": "vsrx-azure-image-payg-b1",
                 "product": "vsrx-next-generation-firewall-payg",
@@ -481,7 +484,7 @@
             "name": "[concat('CrispJuniper', parameters('Environment'), '/AzureNetworkWatcherExtension')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachines', 'CrispJuniper', parameters('Environment'))]"
+                "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Compute/virtualMachines/', 'CrispJuniper', parameters('Environment'))]"
             ],
             "properties": {
                 "autoUpgradeMinorVersion": true,
