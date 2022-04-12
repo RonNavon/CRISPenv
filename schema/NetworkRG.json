@@ -313,33 +313,33 @@
         //         ]
         //     }
         // },
-        {
-            "name": "[concat(parameters('NIC-CrispJuniper'), parameters('Environment'))]",
-            "type": "Microsoft.Network/networkInterfaces",
-            "apiVersion": "2020-11-01",
-            "location": "[resourceGroup().location]",
-            "properties": {
-                "ipConfigurations": [
-                    {
-                        "name": "ipConfig1",
-                        "properties": {
-                            "privateIPAddress": "10.8.0.4",
-                            "privateIPAllocationMethod": "Static",
-                            "publicIPAddress": {
-                                "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-CrispJuniper'), parameters('Environment'))]"
-                            },
-                            "subnet": {
-                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPrivate'), parameters('Environment'))]"
-                            },
-                            "primary": true,
-                            "privateIPAddressVersion": "IPv4"
-                        }
-                    }
-                ],
-                "enableAcceleratedNetworking": false,
-                "enableIPForwarding": true
-            }
-        },
+        // {
+        //     "name": "[concat(parameters('NIC-CrispJuniper'), parameters('Environment'))]",
+        //     "type": "Microsoft.Network/networkInterfaces",
+        //     "apiVersion": "2020-11-01",
+        //     "location": "[resourceGroup().location]",
+        //     "properties": {
+        //         "ipConfigurations": [
+        //             {
+        //                 "name": "ipConfig1",
+        //                 "properties": {
+        //                     "privateIPAddress": "10.8.0.4",
+        //                     "privateIPAllocationMethod": "Static",
+        //                     "publicIPAddress": {
+        //                         "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-CrispJuniper'), parameters('Environment'))]"
+        //                     },
+        //                     "subnet": {
+        //                         "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPrivate'), parameters('Environment'))]"
+        //                     },
+        //                     "primary": true,
+        //                     "privateIPAddressVersion": "IPv4"
+        //                 }
+        //             }
+        //         ],
+        //         "enableAcceleratedNetworking": false,
+        //         "enableIPForwarding": true
+        //     }
+        // },
         // {
         //     "name": "[concat(parameters('NIC-JuniperPublic1'), parameters('Environment'))]",
         //     "type": "Microsoft.Network/networkInterfaces",
@@ -393,7 +393,7 @@
                 "enableAcceleratedNetworking": false,
                 "enableIPForwarding": true,
                 "networkSecurityGroup": {
-                    "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network',parameters('Vnet'), parameters('Environment'),'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
+                    "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network',parameters('Environment'),'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
                 }
             }
         },
