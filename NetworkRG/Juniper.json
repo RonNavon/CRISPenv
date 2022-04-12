@@ -1,0 +1,121 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Environment": {
+            "type": "string"
+        },
+        "SubscriptionID": {
+            "type": "string"
+        },
+        "NIC-JuniperPublic1": {
+            "type": "string"
+        },
+        "NIC-JuniperPublic2": {
+            "type": "string"
+        },
+        "NIC-CrispJuniper": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2021-11-01",
+            "name": "[concat('CrispJuniper', parameters('Environment'))]",
+            "location": "[resourceGroup().location]",
+            "identity": {
+                "type": "None"
+            },
+            "plan": {
+                "name": "vsrx-azure-image-payg-b1",
+                "product": "vsrx-next-generation-firewall-payg",
+                "publisher": "juniper-networks"
+            },
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_B8ms"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "juniper-networks",
+                        "offer": "vsrx-next-generation-firewall-payg",
+                        "sku": "vsrx-azure-image-payg-b1",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat('CrispJuniper', parameters('Environment'), 'CrispJuniper-OsDisk')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "StandardSSD_LRS"
+                        },
+                        "diskSizeGB": 18
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[concat('CrispJuniper', parameters('Environment'))]",
+                    "adminUsername": "crispmltadmin",
+                    "adminPassword": "ZG=&7EvQv%&8",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true,
+                        "patchSettings": {
+                            "patchMode": "ImageDefault",
+                            "assessmentMode": "ImageDefault"
+                        }
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/networkInterfaces/', parameters('NIC-CrispJuniper'), parameters('Environment'))]",
+                            "properties": {
+                                "primary": true
+                            }
+                        },
+                        {
+                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/networkInterfaces/', parameters('NIC-JuniperPublic1'), parameters('Environment'))]",
+                            "properties": {
+                                "primary": false
+                            }
+                        },
+                        {
+                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/networkInterfaces/', parameters('NIC-JuniperPublic2'), parameters('Environment'))]",
+                            "properties": {
+                                "primary": false
+                            }
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines/extensions",
+            "apiVersion": "2021-11-01",
+            "name": "[concat('CrispJuniper', parameters('Environment'), '/AzureNetworkWatcherExtension')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Compute/virtualMachines/', 'CrispJuniper', parameters('Environment'))]"
+            ],
+            "properties": {
+                "autoUpgradeMinorVersion": true,
+                "publisher": "Microsoft.Azure.NetworkWatcher",
+                "type": "NetworkWatcherAgentLinux",
+                "typeHandlerVersion": "1.4"
+            }
+        }
+    ],
+    "outputs": {}
+}
