@@ -110,9 +110,9 @@
                     "vpnClientRevokedCertificates": [],
                     "radiusServers": [],
                     "vpnClientIpsecPolicies": [],
-                    "aadTenant": "https://login.microsoftonline.com/b5f3202f-73b3-40a8-a61e-596ab18836ea",
+                    "aadTenant": "https://login.microsoftonline.com/d141ee51-674b-4090-9686-5f497621f783",
                     "aadAudience": "41b23e61-6c1e-4545-b367-cd054e0ed4b4",
-                    "aadIssuer": "https://sts.windows.net/b5f3202f-73b3-40a8-a61e-596ab18836ea/"
+                    "aadIssuer": "https://sts.windows.net/d141ee51-674b-4090-9686-5f497621f783/"
                 },
                 "vpnGatewayGeneration": "Generation1"
             }
