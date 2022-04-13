@@ -21,7 +21,7 @@
         {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2021-08-01",
-            "name": "[concat('CrispVdsFileStorage', parameters('Environment'))]",
+            "name": "[concat('crispvdsfilestorage', parameters('Environment'))]",
             "location": "[resourceGroup().location]",
             "sku": {
                 "name": "Standard_LRS",
@@ -88,9 +88,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices",
             "apiVersion": "2021-08-01",
-            "name": "[concat('CrispVdsFileStorage', parameters('Environment'), '/default')]",
+            "name": "[concat('crispvdsfilestorage', parameters('Environment'), '/default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', concat('CrispVdsFileStorage', parameters('Environment')))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment')))]"
             ],
             "sku": {
                 "name": "Standard_LRS",
@@ -119,9 +119,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/fileServices",
             "apiVersion": "2021-08-01",
-            "name": "[concat('CrispVdsFileStorage', parameters('Environment'), '/default')]",
+            "name": "[concat('crispvdsfilestorage', parameters('Environment'), '/default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', concat('CrispVdsFileStorage', parameters('Environment')))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment')))]"
             ],
             "sku": {
                 "name": "Standard_LRS",
@@ -143,9 +143,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/privateEndpointConnections",
             "apiVersion": "2021-08-01",
-            "name": "[concat('CrispVdsFileStorage', parameters('Environment'), '/', 'CrispVdsFileStorage', parameters('Environment'), '.66115890-b01e-48e6-a4c1-8fb06afe5c06')]",
+            "name": "[concat('crispvdsfilestorage', parameters('Environment'), '/', 'crispvdsfilestorage', parameters('Environment'), '.66115890-b01e-48e6-a4c1-8fb06afe5c06')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', concat('CrispVdsFileStorage', parameters('Environment')))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment')))]"
             ],
             "properties": {
                 "provisioningState": "Succeeded",
