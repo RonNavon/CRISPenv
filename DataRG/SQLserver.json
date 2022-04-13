@@ -7,6 +7,12 @@
         },
         "SubscriptionID": {
             "type": "string"
+        },
+         "Vnet": {
+            "type": "string"
+        },
+        "SUB-VDS": {
+            "type": "string"
         }
     },
     "functions": [],

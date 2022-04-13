@@ -7,6 +7,12 @@
         },
         "SubscriptionID": {
             "value": "60327e1f-6528-4368-8b35-ed6e547313e6"
+        },
+        "Vnet": {
+            "value": "CRISPNetwork"
+        },
+        "SUB-VDS": {
+            "value": "VDS"
         }
     }
 }

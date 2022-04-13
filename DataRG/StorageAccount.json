@@ -1,0 +1,253 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+         "Environment": {
+            "type": "string"
+        },
+        "SubscriptionID": {
+            "type": "string"
+        },
+         "Vnet": {
+            "type": "string"
+        },
+        "SUB-VDS": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2021-08-01",
+            "name": "[concat('CrispVdsFileStorage', parameters('Environment'))]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "StorageV2",
+            "properties": {
+                "defaultToOAuthAuthentication": false,
+                "allowCrossTenantReplication": true,
+                "minimumTlsVersion": "TLS1_2",
+                "allowBlobPublicAccess": true,
+                "allowSharedKeyAccess": true,
+                "largeFileSharesState": "Enabled",
+                "networkAcls": {
+                    "resourceAccessRules": [],
+                    "bypass": "Logging, Metrics, AzureServices",
+                    "virtualNetworkRules": [
+                        {
+                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network/', parameters('Environment'), 'providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'))]",
+                            "action": "Allow",
+                            "state": "Succeeded"
+                        },
+                        {
+                            "id": "[concat(parameters('Vnet'), parameters('Environment'), '/subnets/', parameters('SUB-VDS'), parameters('Environment'))]",
+                            "action": "Allow",
+                            "state": "Succeeded"
+                        },
+                        {
+                            "id": "[concat(parameters('Vnet'), parameters('Environment'), '/subnets/VnetIntegration', parameters('Environment'))]",
+                            "action": "Allow",
+                            "state": "Succeeded"
+                        }
+                    ],
+                    "ipRules": [
+                        {
+                            "value": "109.67.146.44",
+                            "action": "Allow"
+                        },
+                        {
+                            "value": "46.210.2.68",
+                            "action": "Allow"
+                        }
+                    ],
+                    "defaultAction": "Deny"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "requireInfrastructureEncryption": false,
+                    "services": {
+                        "file": {
+                            "keyType": "Account",
+                            "enabled": true
+                        },
+                        "blob": {
+                            "keyType": "Account",
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                },
+                "accessTier": "Hot"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices",
+            "apiVersion": "2021-08-01",
+            "name": "[concat('CrispVdsFileStorage', parameters('Environment'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccountsCrispVdsFileStorage', parameters('Environment'))]"
+            ],
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "changeFeed": {
+                    "enabled": false
+                },
+                "restorePolicy": {
+                    "enabled": false
+                },
+                "containerDeleteRetentionPolicy": {
+                    "enabled": false
+                },
+                "cors": {
+                    "corsRules": []
+                },
+                "deleteRetentionPolicy": {
+                    "enabled": true,
+                    "days": 30
+                },
+                "isVersioningEnabled": false
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/fileServices",
+            "apiVersion": "2021-08-01",
+            "name": "[concat('CrispVdsFileStorage', parameters('Environment'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccountsCrispVdsFileStorage', parameters('Environment'))]"
+            ],
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "protocolSettings": {
+                    "smb": {}
+                },
+                "cors": {
+                    "corsRules": []
+                },
+                "shareDeleteRetentionPolicy": {
+                    "enabled": false,
+                    "days": 0
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/privateEndpointConnections",
+            "apiVersion": "2021-08-01",
+            "name": "[concat('CrispVdsFileStorage', parameters('Environment'), '/', 'CrispVdsFileStorage', parameters('Environment'), '.66115890-b01e-48e6-a4c1-8fb06afe5c06')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccountsCrispVdsFileStorage', parameters('Environment'))]"
+            ],
+            "properties": {
+                "provisioningState": "Succeeded",
+                "privateEndpoint": {},
+                "privateLinkServiceConnectionState": {
+                    "status": "Approved",
+                    "description": "Auto-Approved",
+                    "actionRequired": "None"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/queueServices",
+            "apiVersion": "2021-08-01",
+            "name": "[concat('CrispVdsFileStorage', parameters('Environment'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccountsCrispVdsFileStorage', parameters('Environment'))]"
+            ],
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/tableServices",
+            "apiVersion": "2021-08-01",
+            "name": "[concat('CrispVdsFileStorage', parameters('Environment'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccountsCrispVdsFileStorage', parameters('Environment'))]"
+            ],
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2021-08-01",
+            "name": "[concat('CrispVdsFileStorage', parameters('Environment'), '/default/6240a5ab67cd2780beae234b')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServicesCrispVdsFileStorage', parameters('Environment'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccountsCrispVdsFileStorage', parameters('Environment'))]"
+            ],
+            "properties": {
+                "immutableStorageWithVersioning": {
+                    "enabled": false
+                },
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "None"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2021-08-01",
+            "name": "[concat('CrispVdsFileStorage', parameters('Environment'), '/default/624947d867cd275ae9ae85ac')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServicesCrispVdsFileStorage', parameters('Environment'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccountsCrispVdsFileStorage', parameters('Environment'))]"
+            ],
+            "properties": {
+                "immutableStorageWithVersioning": {
+                    "enabled": false
+                },
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "None"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2021-08-01",
+            "name": "[concat('CrispVdsFileStorage', parameters('Environment'), '/default/kmlfiles')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServicesCrispVdsFileStorage', parameters('Environment'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccountsCrispVdsFileStorage', parameters('Environment'))]"
+            ],
+            "properties": {
+                "immutableStorageWithVersioning": {
+                    "enabled": false
+                },
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "None"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/fileServices/shares",
+            "apiVersion": "2021-08-01",
+            "name": "[concat('CrispVdsFileStorage', parameters('Environment'), '/default/', parameters('SUB-VDS'), parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/fileServicesCrispVdsFileStorage', parameters('Environment'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccountsCrispVdsFileStorage', parameters('Environment'))]"
+            ],
+            "properties": {
+                "accessTier": "TransactionOptimized",
+                "shareQuota": 102400,
+                "enabledProtocols": "SMB"
+            }
+        }
+    ],
+    "outputs": {}
+}
