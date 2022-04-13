@@ -16,6 +16,9 @@
         },
         "SUB-VDS": {
             "type": "string"
+        },
+        "SUB-AKS": {
+            "type": "string"
         }
     },
     "functions": [],
@@ -42,7 +45,7 @@
                     "resourceAccessRules": [],
                     "virtualNetworkRules": [
                         {
-                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'), '/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'))]",
+                            "id": "[concat(parameters('Vnet'), parameters('Environment'), '/subnets/', parameters('SUB-AKS'), parameters('Environment'))]",
                             "action": "Allow",
                             "state": "Succeeded"
                         },

@@ -16,6 +16,9 @@
         },
         "SUB-VDS": {
             "type": "string"
+        },
+        "SUB-AKS": {
+            "type": "string"
         }
     },
     "functions": [],
@@ -118,7 +121,7 @@
                 "state": "Enabled"
             }
         },
-         {
+        {
             "type": "Microsoft.Sql/servers/firewallRules",
             "apiVersion": "2021-08-01-preview",
             "name": "[concat('CrispMLT', parameters('Environment'), '/AllowAllWindowsAzureIps')]",
@@ -154,7 +157,7 @@
                 "endIpAddress": "137.116.202.68"
             }
         },
-                {
+        {
             "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
             "apiVersion": "2021-08-01-preview",
             "name": "[concat( 'CrispMLT', parameters('Environment'), '/VODServer1/Current')]",

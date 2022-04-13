@@ -16,6 +16,9 @@
         },
         "SUB-VDS": {
             "value": "VDS"
+        },
+        "SUB-AKS": {
+            "value": "AKS"
         }
     }
 }
