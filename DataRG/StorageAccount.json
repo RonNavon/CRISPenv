@@ -89,64 +89,9 @@
             }
         },
         {
-            "type": "Microsoft.Storage/storageAccounts/blobServices",
-            "apiVersion": "2021-08-01",
-            "name": "[concat('crispvdsfilestorage', parameters('Environment2'), '/default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment2')))]"
-            ],
-            "sku": {
-                "name": "Standard_LRS",
-                "tier": "Standard"
-            },
-            "properties": {
-                "changeFeed": {
-                    "enabled": false
-                },
-                "restorePolicy": {
-                    "enabled": false
-                },
-                "containerDeleteRetentionPolicy": {
-                    "enabled": false
-                },
-                "cors": {
-                    "corsRules": []
-                },
-                "deleteRetentionPolicy": {
-                    "enabled": true,
-                    "days": 30
-                },
-                "isVersioningEnabled": false
-            }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts/fileServices",
-            "apiVersion": "2021-08-01",
-            "name": "[concat('crispvdsfilestorage', parameters('Environment2'), '/default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment2')))]"
-            ],
-            "sku": {
-                "name": "Standard_LRS",
-                "tier": "Standard"
-            },
-            "properties": {
-                "protocolSettings": {
-                    "smb": {}
-                },
-                "cors": {
-                    "corsRules": []
-                },
-                "shareDeleteRetentionPolicy": {
-                    "enabled": false,
-                    "days": 0
-                }
-            }
-        },
-        {
             "type": "Microsoft.Storage/storageAccounts/privateEndpointConnections",
             "apiVersion": "2021-08-01",
-            "name": "[concat('crispvdsfilestorage', parameters('Environment2'), '/', 'crispvdsfilestorage', parameters('Environment2'), '.66115890-b01e-48e6-a4c1-8fb06afe5c06')]",
+            "name": "[concat('crispvdsfilestorage', parameters('Environment2'), '/', 'crispvdsfilestorage', parameters('Environment2'))]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment2')))]"
             ],
