@@ -2,13 +2,16 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-         "Environment": {
+        "Environment": {
+            "type": "string"
+        },
+        "Environment2": {
             "type": "string"
         },
         "SubscriptionID": {
             "type": "string"
         },
-         "Vnet": {
+        "Vnet": {
             "type": "string"
         },
         "SUB-VDS": {
@@ -21,7 +24,7 @@
         {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2021-08-01",
-            "name": "[concat('crispvdsfilestorage', parameters('Environment'))]",
+            "name": "[concat('crispvdsfilestorage', parameters('Environment2'))]",
             "location": "[resourceGroup().location]",
             "sku": {
                 "name": "Standard_LRS",
@@ -40,17 +43,17 @@
                     "bypass": "Logging, Metrics, AzureServices",
                     "virtualNetworkRules": [
                         {
-                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network/', parameters('Environment'), 'providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'))]",
+                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network/', parameters('Environment2'), 'providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment2'))]",
                             "action": "Allow",
                             "state": "Succeeded"
                         },
                         {
-                            "id": "[concat(parameters('Vnet'), parameters('Environment'), '/subnets/', parameters('SUB-VDS'), parameters('Environment'))]",
+                            "id": "[concat(parameters('Vnet'), parameters('Environment2'), '/subnets/', parameters('SUB-VDS'), parameters('Environment2'))]",
                             "action": "Allow",
                             "state": "Succeeded"
                         },
                         {
-                            "id": "[concat(parameters('Vnet'), parameters('Environment'), '/subnets/VnetIntegration', parameters('Environment'))]",
+                            "id": "[concat(parameters('Vnet'), parameters('Environment2'), '/subnets/VnetIntegration', parameters('Environment2'))]",
                             "action": "Allow",
                             "state": "Succeeded"
                         }
@@ -88,9 +91,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices",
             "apiVersion": "2021-08-01",
-            "name": "[concat('crispvdsfilestorage', parameters('Environment'), '/default')]",
+            "name": "[concat('crispvdsfilestorage', parameters('Environment2'), '/default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment')))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment2')))]"
             ],
             "sku": {
                 "name": "Standard_LRS",
@@ -119,9 +122,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/fileServices",
             "apiVersion": "2021-08-01",
-            "name": "[concat('crispvdsfilestorage', parameters('Environment'), '/default')]",
+            "name": "[concat('crispvdsfilestorage', parameters('Environment2'), '/default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment')))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment2')))]"
             ],
             "sku": {
                 "name": "Standard_LRS",
@@ -143,9 +146,9 @@
         {
             "type": "Microsoft.Storage/storageAccounts/privateEndpointConnections",
             "apiVersion": "2021-08-01",
-            "name": "[concat('crispvdsfilestorage', parameters('Environment'), '/', 'crispvdsfilestorage', parameters('Environment'), '.66115890-b01e-48e6-a4c1-8fb06afe5c06')]",
+            "name": "[concat('crispvdsfilestorage', parameters('Environment2'), '/', 'crispvdsfilestorage', parameters('Environment2'), '.66115890-b01e-48e6-a4c1-8fb06afe5c06')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment')))]"
+                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment2')))]"
             ],
             "properties": {
                 "provisioningState": "Succeeded",
