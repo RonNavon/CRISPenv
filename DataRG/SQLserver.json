@@ -5,10 +5,13 @@
         "Environment": {
             "type": "string"
         },
+        "Environment2": {
+            "type": "string"
+        },
         "SubscriptionID": {
             "type": "string"
         },
-         "Vnet": {
+        "Vnet": {
             "type": "string"
         },
         "SUB-VDS": {
