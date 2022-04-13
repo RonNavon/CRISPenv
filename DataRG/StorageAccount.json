@@ -42,7 +42,7 @@
                     "resourceAccessRules": [],
                     "virtualNetworkRules": [
                         {
-                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network/', parameters('Environment'), 'providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'))]",
+                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'), '/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'))]",
                             "action": "Allow",
                             "state": "Succeeded"
                         },
