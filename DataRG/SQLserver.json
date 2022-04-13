@@ -27,135 +27,135 @@
                 "version": "12.0",
                 "publicNetworkAccess": "Enabled",
                 "restrictOutboundNetworkAccess": "Disabled"
-            }}
-        // ,
-        // {
-        //     "type": "Microsoft.Sql/servers/auditingPolicies",
-        //     "apiVersion": "2014-04-01",
-        //     "name": "[concat('CrispMLT',parameters('Environment'), '/Default')]",
-        //     "location": "[resourceGroup().location]",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
-        //     ],
-        //     "properties": {
-        //         "auditingState": "Disabled"
-        //     }
-        // },
-        // {
-        //     "type": "Microsoft.Sql/servers/databases",
-        //     "apiVersion": "2021-08-01-preview",
-        //     "name": "[concat('CrispMLT', parameters('Environment'), '/VODServer1')]",
-        //     "location": "[resourceGroup().location]",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
-        //     ],
-        //     "sku": {
-        //         "name": "GP_Gen5",
-        //         "tier": "GeneralPurpose",
-        //         "family": "Gen5",
-        //         "capacity": 2
-        //     },
-        //     "kind": "v12.0,user,vcore",
-        //     "properties": {
-        //         "collation": "SQL_Latin1_General_CP1_CI_AS",
-        //         "maxSizeBytes": 34359738368,
-        //         "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
-        //         "zoneRedundant": false,
-        //         "licenseType": "LicenseIncluded",
-        //         "readScale": "Disabled",
-        //         "requestedBackupStorageRedundancy": "Geo",
-        //         "maintenanceConfigurationId": "[concat('/subscriptions/', parameters('SubscriptionID'), '/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default')]",
-        //         "isLedgerOn": false
-        //     }
-        // },
-        // {
-        //     "type": "Microsoft.Sql/servers/databases/backupLongTermRetentionPolicies",
-        //     "apiVersion": "2021-08-01-preview",
-        //     "name": "[concat('CrispMLT', parameters('Environment'), '/VODServer1/default')]",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Sql/servers/databasesCrispMLT', parameters('Environment'), 'VODServer1')]",
-        //         "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
-        //     ],
-        //     "properties": {
-        //         "weeklyRetention": "PT0S",
-        //         "monthlyRetention": "PT0S",
-        //         "yearlyRetention": "PT0S",
-        //         "weekOfYear": 0
-        //     }
-        // },
-        // {
-        //     "type": "Microsoft.Sql/servers/databases/backupShortTermRetentionPolicies",
-        //     "apiVersion": "2021-08-01-preview",
-        //     "name": "[concat('CrispMLT', parameters('Environment'), '/VODServer1/default')]",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Sql/servers/databasesCrispMLT', parameters('Environment'), 'VODServer1')]",
-        //         "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
-        //     ],
-        //     "properties": {
-        //         "retentionDays": 7,
-        //         "diffBackupIntervalInHours": 12
-        //     }
-        // },
-        // {
-        //     "type": "Microsoft.Sql/servers/databases/geoBackupPolicies",
-        //     "apiVersion": "2014-04-01",
-        //     "name": "[concat('CrispMLT', parameters('Environment'), '/VODServer1/Default')]",
-        //     "location": "West Europe",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Sql/servers/databasesCrispMLT', parameters('Environment'), 'VODServer1')]",
-        //         "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
-        //     ],
-        //     "properties": {
-        //         "state": "Enabled"
-        //     }
-        // },
-        //  {
-        //     "type": "Microsoft.Sql/servers/firewallRules",
-        //     "apiVersion": "2021-08-01-preview",
-        //     "name": "[concat('CrispMLT', parameters('Environment'), '/AllowAllWindowsAzureIps')]",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
-        //     ],
-        //     "properties": {
-        //         "startIpAddress": "0.0.0.0",
-        //         "endIpAddress": "0.0.0.0"
-        //     }
-        // },
-        // {
-        //     "type": "Microsoft.Sql/servers/firewallRules",
-        //     "apiVersion": "2021-08-01-preview",
-        //     "name": "[concat('CrispMLT', parameters('Environment'), '/sql')]",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
-        //     ],
-        //     "properties": {
-        //         "startIpAddress": "80.74.101.10",
-        //         "endIpAddress": "80.74.101.10"
-        //     }
-        // },
-        // {
-        //     "type": "Microsoft.Sql/servers/firewallRules",
-        //     "apiVersion": "2021-08-01-preview",
-        //     "name": "[concat('CrispMLT', parameters('Environment'), '/VDS')]",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
-        //     ],
-        //     "properties": {
-        //         "startIpAddress": "137.116.202.68",
-        //         "endIpAddress": "137.116.202.68"
-        //     }
-        // },
-        //         {
-        //     "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
-        //     "apiVersion": "2021-08-01-preview",
-        //     "name": "[concat( 'CrispMLT', parameters('Environment'), '/VODServer1/Current')]",
-        //     "dependsOn": [
-        //         "[resourceId('Microsoft.Sql/servers/databasesCrispMLT', parameters('Environment'), 'VODServer1')]"
-        //     ],
-        //     "properties": {
-        //         "state": "Enabled"
-        //     }
-        // }
+            }
+        },
+        {
+            "type": "Microsoft.Sql/servers/auditingPolicies",
+            "apiVersion": "2014-04-01",
+            "name": "[concat('CrispMLT',parameters('Environment'), '/Default')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
+            ],
+            "properties": {
+                "auditingState": "Disabled"
+            }
+        },
+        {
+            "type": "Microsoft.Sql/servers/databases",
+            "apiVersion": "2021-08-01-preview",
+            "name": "[concat('CrispMLT', parameters('Environment'), '/VODServer1')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
+            ],
+            "sku": {
+                "name": "GP_Gen5",
+                "tier": "GeneralPurpose",
+                "family": "Gen5",
+                "capacity": 2
+            },
+            "kind": "v12.0,user,vcore",
+            "properties": {
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": 34359738368,
+                "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
+                "zoneRedundant": false,
+                "licenseType": "LicenseIncluded",
+                "readScale": "Disabled",
+                "requestedBackupStorageRedundancy": "Geo",
+                "maintenanceConfigurationId": "[concat('/subscriptions/', parameters('SubscriptionID'), '/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default')]",
+                "isLedgerOn": false
+            }
+        },
+        {
+            "type": "Microsoft.Sql/servers/databases/backupLongTermRetentionPolicies",
+            "apiVersion": "2021-08-01-preview",
+            "name": "[concat('CrispMLT', parameters('Environment'), '/VODServer1/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers/databasesCrispMLT', parameters('Environment'), 'VODServer1')]",
+                "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
+            ],
+            "properties": {
+                "weeklyRetention": "PT0S",
+                "monthlyRetention": "PT0S",
+                "yearlyRetention": "PT0S",
+                "weekOfYear": 0
+            }
+        },
+        {
+            "type": "Microsoft.Sql/servers/databases/backupShortTermRetentionPolicies",
+            "apiVersion": "2021-08-01-preview",
+            "name": "[concat('CrispMLT', parameters('Environment'), '/VODServer1/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers/databasesCrispMLT', parameters('Environment'), 'VODServer1')]",
+                "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
+            ],
+            "properties": {
+                "retentionDays": 7,
+                "diffBackupIntervalInHours": 12
+            }
+        },
+        {
+            "type": "Microsoft.Sql/servers/databases/geoBackupPolicies",
+            "apiVersion": "2014-04-01",
+            "name": "[concat('CrispMLT', parameters('Environment'), '/VODServer1/Default')]",
+            "location": "West Europe",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers/databasesCrispMLT', parameters('Environment'), 'VODServer1')]",
+                "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
+            ],
+            "properties": {
+                "state": "Enabled"
+            }
+        },
+         {
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "apiVersion": "2021-08-01-preview",
+            "name": "[concat('CrispMLT', parameters('Environment'), '/AllowAllWindowsAzureIps')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
+            ],
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "0.0.0.0"
+            }
+        },
+        {
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "apiVersion": "2021-08-01-preview",
+            "name": "[concat('CrispMLT', parameters('Environment'), '/sql')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
+            ],
+            "properties": {
+                "startIpAddress": "80.74.101.10",
+                "endIpAddress": "80.74.101.10"
+            }
+        },
+        {
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "apiVersion": "2021-08-01-preview",
+            "name": "[concat('CrispMLT', parameters('Environment'), '/VDS')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/serversCrispMLT', parameters('Environment'))]"
+            ],
+            "properties": {
+                "startIpAddress": "137.116.202.68",
+                "endIpAddress": "137.116.202.68"
+            }
+        },
+                {
+            "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
+            "apiVersion": "2021-08-01-preview",
+            "name": "[concat( 'CrispMLT', parameters('Environment'), '/VODServer1/Current')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers/databasesCrispMLT', parameters('Environment'), 'VODServer1')]"
+            ],
+            "properties": {
+                "state": "Enabled"
+            }
+        }
     ],
     "outputs": {}
 }
