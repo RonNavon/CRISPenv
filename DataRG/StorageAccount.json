@@ -39,6 +39,16 @@
                 "allowSharedKeyAccess": true,
                 "largeFileSharesState": "Enabled",
                 "supportsHttpsTrafficOnly": true,
+                "networkAcls": {
+                    "defaultAction": "Deny",
+                    "virtualNetworkRules": [
+                        {
+                            "id": "[concat('/subscriptions/', subscription().id,'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'))]",
+                            "action": "Allow",
+                            "state": "Succeeded"
+                        }
+                    ]
+                },
                 "encryption": {
                     "requireInfrastructureEncryption": false,
                     "services": {
