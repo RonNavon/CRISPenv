@@ -5,9 +5,6 @@
         "Environment": {
             "type": "string"
         },
-        "SubscriptionID": {
-            "type": "string"
-        },
         "Vnet": {
             "type": "string"
         },
@@ -79,10 +76,10 @@
                             "privateIPAddress": "10.8.0.4",
                             "privateIPAllocationMethod": "Static",
                             "publicIPAddress": {
-                                "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-CrispJuniper'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/', subscription().id,'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-CrispJuniper'), parameters('Environment'))]"
                             },
                             "subnet": {
-                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPrivate'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPrivate'), parameters('Environment'))]"
                             },
                             "primary": true,
                             "privateIPAddressVersion": "IPv4"
@@ -106,10 +103,10 @@
                             "privateIPAddress": "10.6.0.4",
                             "privateIPAllocationMethod": "Static",
                             "publicIPAddress": {
-                                "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-JuniperPublic1'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/', subscription().id,'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-JuniperPublic1'), parameters('Environment'))]"
                             },
                             "subnet": {
-                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPublic1'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-JuniperPublic1'), parameters('Environment'))]"
                             },
                             "primary": true,
                             "privateIPAddressVersion": "IPv4"
@@ -133,10 +130,10 @@
                             "privateIPAddress": "10.2.0.5",
                             "privateIPAllocationMethod": "Static",
                             "publicIPAddress": {
-                                "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-JuniperPublic2'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/', subscription().id,'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-JuniperPublic2'), parameters('Environment'))]"
                             },
                             "subnet": {
-                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-VDS'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-VDS'), parameters('Environment'))]"
                             },
                             "primary": true,
                             "privateIPAddressVersion": "IPv4"
@@ -146,7 +143,7 @@
                 "enableAcceleratedNetworking": false,
                 "enableIPForwarding": true,
                 "networkSecurityGroup": {
-                    "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/Network',parameters('Environment'),'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
+                    "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/Network',parameters('Environment'),'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
                 }
             }
         }
