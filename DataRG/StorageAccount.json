@@ -43,7 +43,7 @@
                     "defaultAction": "Deny",
                     "virtualNetworkRules": [
                         {
-                            "id": "/subscriptions/6d8e62e8-1717-4002-bdc8-17c36dfbbf59/resourceGroups/Network-test/providers/Microsoft.Network/virtualNetworks/CRISPNetwork-test/subnets/AKS-test",
+                            "id": "/subscriptions/6d8e62e8-1717-4002-bdc8-17c36dfbbf59/resourceGroups/Network-test/providers/Microsoft.Network/virtualNetworks/CRISPNetwork-test",
                             "action": "Allow"
                         }
                     ]
