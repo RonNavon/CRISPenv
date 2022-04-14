@@ -39,16 +39,6 @@
                 "allowSharedKeyAccess": true,
                 "largeFileSharesState": "Enabled",
                 "supportsHttpsTrafficOnly": true,
-                "networkAcls": {
-                    "virtualNetworkRules": [
-                        {
-                            "id": "/subscriptions/60327e1f-6528-4368-8b35-ed6e547313e6/resourceGroups/Network-test/providers/Microsoft.Network/virtualNetworks/CRISPNetwork-test/subnets/VDS-test",
-                            "action": "Allow",
-                            "state": "Succeeded"
-                        }
-                    ],
-                    "defaultAction": "Deny"
-                },
                 "encryption": {
                     "requireInfrastructureEncryption": false,
                     "services": {
