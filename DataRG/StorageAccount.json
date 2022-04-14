@@ -8,9 +8,6 @@
         "Environment2": {
             "type": "string"
         },
-        "SubscriptionID": {
-            "type": "string"
-        },
         "Vnet": {
             "type": "string"
         },
@@ -42,6 +39,16 @@
                 "allowSharedKeyAccess": true,
                 "largeFileSharesState": "Enabled",
                 "supportsHttpsTrafficOnly": true,
+                "networkAcls": {
+                    "virtualNetworkRules": [
+                        {
+                            "id": "[concat('/subscriptions/', subscription().id ,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/CRISPNetwork',parameters('Environment'))]",
+                            "action": "Allow",
+                            "state": "Succeeded"
+                        }
+                    ],
+                    "defaultAction": "Deny"
+                },
                 "encryption": {
                     "requireInfrastructureEncryption": false,
                     "services": {

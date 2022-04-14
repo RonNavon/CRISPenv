@@ -8,9 +8,6 @@
         "Environment2": {
             "type": "string"
         },
-        "SubscriptionID": {
-            "type": "string"
-        },
         "Vnet": {
             "type": "string"
         },
@@ -76,7 +73,7 @@
                 "licenseType": "LicenseIncluded",
                 "readScale": "Disabled",
                 "requestedBackupStorageRedundancy": "Geo",
-                "maintenanceConfigurationId": "[concat('/subscriptions/', parameters('SubscriptionID'), '/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default')]",
+                "maintenanceConfigurationId": "[concat('/subscriptions/', subscription().id, '/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default')]",
                 "isLedgerOn": false
             }
         },
