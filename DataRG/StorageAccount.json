@@ -89,6 +89,23 @@
                 },
                 "accessTier": "Hot"
             }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/privateEndpointConnections",
+            "apiVersion": "2021-08-01",
+            "name": "[concat('crispvdsfilestorage', parameters('Environment2'), '/', 'crispvdsfilestorage', parameters('Environment2'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment2')))]"
+            ],
+            "properties": {
+                "provisioningState": "Succeeded",
+                "privateEndpoint": {},
+                "privateLinkServiceConnectionState": {
+                    "status": "Approved",
+                    "description": "Auto-Approved",
+                    "actionRequired": "None"
+                }
+            }
         }
     ],
     "outputs": {}
