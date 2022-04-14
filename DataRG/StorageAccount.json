@@ -42,7 +42,7 @@
                 "networkAcls": {
                     "virtualNetworkRules": [
                         {
-                            "id": "[concat('/subscriptions/', subscription().id,'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'), '/subnets/', parameters('SUB-VDS'), parameters('Environment'))]",
+                            "id": "[concat('/subscriptions/60327e1f-6528-4368-8b35-ed6e547313e6/resourceGroups/Network-test/providers/Microsoft.Network/virtualNetworks/CRISPNetwork-test/subnets/VDS-test')]",
                             "action": "Allow",
                             "state": "Succeeded"
                         }
