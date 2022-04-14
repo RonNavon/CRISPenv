@@ -39,6 +39,21 @@
                 "allowSharedKeyAccess": true,
                 "largeFileSharesState": "Enabled",
                 "supportsHttpsTrafficOnly": true,
+                  "networkAcls": {
+                    "resourceAccessRules": [],
+                    "bypass": "Logging, Metrics, AzureServices",
+                    "ipRules": [
+                        {
+                            "value": "109.67.146.44",
+                            "action": "Allow"
+                        },
+                        {
+                            "value": "46.210.2.68",
+                            "action": "Allow"
+                        }
+                    ],
+                    "defaultAction": "Deny"
+                },
                 "encryption": {
                     "requireInfrastructureEncryption": false,
                     "services": {
