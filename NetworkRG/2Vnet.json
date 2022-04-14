@@ -96,7 +96,25 @@
                             "addressPrefix": "10.1.0.0/16",
                             "networkSecurityGroup": {
                                 "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/',resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-AKS'), parameters('Environment'))]"
-                            }
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.AzureCosmosDB",
+                                    "locations": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     },
                     {
@@ -105,19 +123,55 @@
                             "addressPrefix": "10.30.0.0/16",
                             "networkSecurityGroup": {
                                 "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/',resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-AKS'), parameters('Environment'))]"
-                            }
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     },
                     {
                         "name": "AzureBastionSubnet",
                         "properties": {
-                            "addressPrefix": "10.13.0.0/24"
+                            "addressPrefix": "10.13.0.0/24",
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     },
                     {
                         "name": "GatewaySubnet",
                         "properties": {
-                            "addressPrefix": "10.2.1.0/24"
+                            "addressPrefix": "10.2.1.0/24",
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     },
                     {
@@ -126,7 +180,19 @@
                             "addressPrefix": "10.9.0.0/24",
                             "networkSecurityGroup": {
                                 "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/',resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-GITLab'), parameters('Environment'))]"
-                            }
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     },
                     {
@@ -135,7 +201,19 @@
                             "addressPrefix": "10.8.0.0/24",
                             "networkSecurityGroup": {
                                 "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/',resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
-                            }
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     },
                     {
@@ -144,7 +222,19 @@
                             "addressPrefix": "10.6.0.0/24",
                             "networkSecurityGroup": {
                                 "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
-                            }
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     },
                     {
@@ -153,7 +243,19 @@
                             "addressPrefix": "10.7.0.0/24",
                             "networkSecurityGroup": {
                                 "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
-                            }
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     },
                     {
@@ -162,19 +264,62 @@
                             "addressPrefix": "10.2.0.0/24",
                             "networkSecurityGroup": {
                                 "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-VDS'), parameters('Environment'))]"
-                            }
+                            },
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     },
                     {
                         "name": "[concat('VDSSub', parameters('Environment'))]",
                         "properties": {
-                            "addressPrefix": "10.12.0.0/24"
+                            "addressPrefix": "10.12.0.0/24",
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     },
                     {
                         "name": "[concat('VnetIntegration', parameters('Environment'))]",
                         "properties": {
-                            "addressPrefix": "10.2.2.0/24"
+                            "addressPrefix": "10.2.2.0/24",
+                            "serviceEndpoints": [
+                                {
+                                    "service": "Microsoft.Storage",
+                                    "locations": [
+                                        "westeurope",
+                                        "northeurope"
+                                    ]
+                                }
+                            ],
+                            "delegations": [
+                                {
+                                    "name": "delegation",
+                                    "properties": {
+                                        "serviceName": "Microsoft.Web/serverfarms"
+                                    }
+                                }
+                            ],
+                            "privateEndpointNetworkPolicies": "Enabled",
+                            "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     }
                 ]
@@ -249,26 +394,26 @@
                 "idleTimeoutInMinutes": 4
             }
         },
-    {
-        "name": "[concat(parameters('RT-VDSRoute'), parameters('Environment'))]",
-        "type": "Microsoft.Network/routeTables",
-        "apiVersion": "2020-11-01",
-        "location": "[resourceGroup().location]",
-        "tags": {},
-        "properties": {
-            "routes": [
-                {
-                    "name": "To_SRX_300_LAN",
-                    "properties": {
-                        "addressPrefix": "92.200.0.0/16",
-                        "nextHopType": "VirtualAppliance",
-                        "nextHopIpAddress": "10.2.0.8"
+        {
+            "name": "[concat(parameters('RT-VDSRoute'), parameters('Environment'))]",
+            "type": "Microsoft.Network/routeTables",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "tags": {},
+            "properties": {
+                "routes": [
+                    {
+                        "name": "To_SRX_300_LAN",
+                        "properties": {
+                            "addressPrefix": "92.200.0.0/16",
+                            "nextHopType": "VirtualAppliance",
+                            "nextHopIpAddress": "10.2.0.8"
+                        }
                     }
-                }
-            ],
-            "disableBgpRoutePropagation": true
+                ],
+                "disableBgpRoutePropagation": true
+            }
         }
-    }
     ],
     "outputs": {}
 }
