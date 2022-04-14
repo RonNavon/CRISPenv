@@ -5,9 +5,6 @@
         "Environment": {
             "type": "string"
         },
-        "SubscriptionID": {
-            "type": "string"
-        },
         "Vnet": {
             "type": "string"
         },

@@ -42,7 +42,7 @@
                 "networkAcls": {
                     "virtualNetworkRules": [
                         {
-                            "id": "[concat('/subscriptions/', subscription().id ,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/CRISPNetwork',parameters('Environment'))]",
+                            "id": "[concat('/subscriptions/', subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/CRISPNetwork',parameters('Environment'))]",
                             "action": "Allow",
                             "state": "Succeeded"
                         }
