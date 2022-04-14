@@ -95,14 +95,14 @@
                         "properties": {
                             "addressPrefix": "10.1.0.0/16",
                             "networkSecurityGroup": {
-                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/',resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-AKS'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-AKS'), parameters('Environment'))]"
                             },
                             "serviceEndpoints": [
                                 {
                                     "service": "Microsoft.AzureCosmosDB",
                                     "locations": [
                                         "*"
-                                    ]
+                                    ] 
                                 },
                                 {
                                     "service": "Microsoft.Storage",
@@ -122,7 +122,7 @@
                         "properties": {
                             "addressPrefix": "10.30.0.0/16",
                             "networkSecurityGroup": {
-                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/',resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-AKS'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-AKS'), parameters('Environment'))]"
                             },
                             "serviceEndpoints": [
                                 {
@@ -179,7 +179,7 @@
                         "properties": {
                             "addressPrefix": "10.9.0.0/24",
                             "networkSecurityGroup": {
-                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/',resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-GITLab'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-GITLab'), parameters('Environment'))]"
                             },
                             "serviceEndpoints": [
                                 {
@@ -200,7 +200,7 @@
                         "properties": {
                             "addressPrefix": "10.8.0.0/24",
                             "networkSecurityGroup": {
-                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/',resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/',resourceGroup().name,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
                             },
                             "serviceEndpoints": [
                                 {
@@ -221,7 +221,7 @@
                         "properties": {
                             "addressPrefix": "10.6.0.0/24",
                             "networkSecurityGroup": {
-                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
                             },
                             "serviceEndpoints": [
                                 {
@@ -242,7 +242,7 @@
                         "properties": {
                             "addressPrefix": "10.7.0.0/24",
                             "networkSecurityGroup": {
-                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-CrispJuniper'), parameters('Environment'))]"
                             },
                             "serviceEndpoints": [
                                 {
@@ -263,7 +263,7 @@
                         "properties": {
                             "addressPrefix": "10.2.0.0/24",
                             "networkSecurityGroup": {
-                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().id,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-VDS'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/networkSecurityGroups/', parameters('NSG-VDS'), parameters('Environment'))]"
                             },
                             "serviceEndpoints": [
                                 {
