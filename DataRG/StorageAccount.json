@@ -41,37 +41,6 @@
                 "allowBlobPublicAccess": true,
                 "allowSharedKeyAccess": true,
                 "largeFileSharesState": "Enabled",
-                "networkAcls": {
-                    "resourceAccessRules": [],
-                    "virtualNetworkRules": [
-                        {
-                            "id": "[concat(parameters('Vnet'), parameters('Environment'), '/subnets/', parameters('SUB-AKS'), parameters('Environment'))]",
-                            "action": "Allow",
-                            "state": "Succeeded"
-                        },
-                        {
-                            "id": "[concat(parameters('Vnet'), parameters('Environment'), '/subnets/', parameters('SUB-VDS'), parameters('Environment'))]",
-                            "action": "Allow",
-                            "state": "Succeeded"
-                        },
-                        {
-                            "id": "[concat(parameters('Vnet'), parameters('Environment'), '/subnets/VnetIntegration', parameters('Environment'))]",
-                            "action": "Allow",
-                            "state": "Succeeded"
-                        }
-                    ],
-                    "ipRules": [
-                        {
-                            "value": "109.67.146.44",
-                            "action": "Allow"
-                        },
-                        {
-                            "value": "46.210.2.68",
-                            "action": "Allow"
-                        }
-                    ],
-                    "defaultAction": "Deny"
-                },
                 "supportsHttpsTrafficOnly": true,
                 "encryption": {
                     "requireInfrastructureEncryption": false,
@@ -88,23 +57,6 @@
                     "keySource": "Microsoft.Storage"
                 },
                 "accessTier": "Hot"
-            }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts/privateEndpointConnections",
-            "apiVersion": "2021-08-01",
-            "name": "[concat('crispvdsfilestorage', parameters('Environment2'), '/', 'crispvdsfilestorage', parameters('Environment2'))]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment2')))]"
-            ],
-            "properties": {
-                "provisioningState": "Succeeded",
-                "privateEndpoint": {},
-                "privateLinkServiceConnectionState": {
-                    "status": "Approved",
-                    "description": "Auto-Approved",
-                    "actionRequired": "None"
-                }
             }
         }
     ],
