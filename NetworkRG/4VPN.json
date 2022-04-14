@@ -8,6 +8,9 @@
         "Vnet": {
             "type": "string"
         },
+        "SubscriptionID": {
+            "type": "string"
+        },
         "PublicIP-CrispJuniper": {
             "type": "string"
         },
@@ -75,10 +78,10 @@
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
                             "subnet": {
-                                "id": "[concat('/subscriptions/',subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', 'GatewaySubnet')]"
+                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', 'GatewaySubnet')]"
                             },
                             "publicIPAddress": {
-                                "id": "[concat('/subscriptions/', subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-CrispVPN'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-CrispVPN'), parameters('Environment'))]"
                             }
                         }
                     }

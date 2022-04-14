@@ -8,6 +8,9 @@
         "Vnet": {
             "type": "string"
         },
+        "SubscriptionID": {
+            "type": "string"
+        },
         "PublicIP-CrispJuniper": {
             "type": "string"
         },
@@ -117,19 +120,19 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[concat('/subscriptions/', subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/networkInterfaces/', parameters('NIC-CrispJuniper'), parameters('Environment'))]",
+                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/networkInterfaces/', parameters('NIC-CrispJuniper'), parameters('Environment'))]",
                             "properties": {
                                 "primary": true
                             }
                         },
                         {
-                            "id": "[concat('/subscriptions/', subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/networkInterfaces/', parameters('NIC-JuniperPublic1'), parameters('Environment'))]",
+                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/networkInterfaces/', parameters('NIC-JuniperPublic1'), parameters('Environment'))]",
                             "properties": {
                                 "primary": false
                             }
                         },
                         {
-                            "id": "[concat('/subscriptions/', subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/networkInterfaces/', parameters('NIC-JuniperPublic2'), parameters('Environment'))]",
+                            "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/networkInterfaces/', parameters('NIC-JuniperPublic2'), parameters('Environment'))]",
                             "properties": {
                                 "primary": false
                             }
@@ -149,7 +152,7 @@
             "name": "[concat('CrispJuniper', parameters('Environment'), '/AzureNetworkWatcherExtension')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[concat('/subscriptions/', subscription().id,'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Compute/virtualMachines/', 'CrispJuniper', parameters('Environment'))]"
+                "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Compute/virtualMachines/', 'CrispJuniper', parameters('Environment'))]"
             ],
             "properties": {
                 "autoUpgradeMinorVersion": true,
