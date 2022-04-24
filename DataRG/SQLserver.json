@@ -16,6 +16,12 @@
         },
         "SUB-AKS": {
             "type": "string"
+        },
+         "SubscriptionID": {
+            "type": "string"
+        },
+        "mongodb": {
+            "type": "string"
         }
     },
     "functions": [],

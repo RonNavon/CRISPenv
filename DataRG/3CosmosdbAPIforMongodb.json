@@ -1,0 +1,509 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Environment": {
+            "type": "string"
+        },
+        "Environment2": {
+            "type": "string"
+        },
+        "Vnet": {
+            "type": "string"
+        },
+        "SUB-VDS": {
+            "type": "string"
+        },
+        "SUB-AKS": {
+            "type": "string"
+        },
+        "SubscriptionID": {
+            "type": "string"
+        },
+        "mongodb": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "name": "[concat(parameters('mongodb'), parameters('Environment'))]",
+            "type": "Microsoft.DocumentDB/databaseAccounts",
+            "apiVersion": "2021-05-15",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "defaultExperience": "Azure Cosmos DB for MongoDB API",
+                "hidden-cosmos-mmspecial": ""
+            },
+            "kind": "MongoDB",
+            "identity": {
+                "type": "None"
+            },
+            "properties": {
+                "publicNetworkAccess": "Enabled",
+                "enableAutomaticFailover": false,
+                "enableMultipleWriteLocations": false,
+                "isVirtualNetworkFilterEnabled": true,
+                "virtualNetworkRules": [
+                    {
+                        "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-AKS'), parameters('Environment'))]",
+                        "ignoreMissingVNetServiceEndpoint": false
+                    }
+                ],
+                "disableKeyBasedMetadataWriteAccess": false,
+                "enableFreeTier": false,
+                "enableAnalyticalStorage": false,
+                "analyticalStorageConfiguration": {
+                    "schemaType": "FullFidelity"
+                },
+                "databaseAccountOfferType": "Standard",
+                "defaultIdentity": "FirstPartyIdentity",
+                "networkAclBypass": "None",
+                "disableLocalAuth": false,
+                "consistencyPolicy": {
+                    "defaultConsistencyLevel": "Session",
+                    "maxIntervalInSeconds": 5,
+                    "maxStalenessPrefix": 100
+                },
+                "apiProperties": {
+                    "serverVersion": "3.6"
+                },
+                "locations": [
+                    {
+                        "locationName": "[resourceGroup().name]",
+                        "provisioningState": "Succeeded",
+                        "failoverPriority": 0,
+                        "isZoneRedundant": false
+                    }
+                ],
+                "cors": [],
+                "capabilities": [
+                    {
+                        "name": "EnableMongo"
+                    },
+                    {
+                        "name": "DisableRateLimitingResponses"
+                    },
+                    {
+                        "name": "EnableServerless"
+                    }
+                ],
+                "ipRules": [
+                    {
+                        "ipAddressOrRange": "46.210.8.68"
+                    },
+                    {
+                        "ipAddressOrRange": "104.42.195.92"
+                    },
+                    {
+                        "ipAddressOrRange": "40.76.54.131"
+                    },
+                    {
+                        "ipAddressOrRange": "52.176.6.30"
+                    },
+                    {
+                        "ipAddressOrRange": "52.169.50.45"
+                    },
+                    {
+                        "ipAddressOrRange": "52.187.184.26"
+                    },
+                    {
+                        "ipAddressOrRange": "0.0.0.0"
+                    }
+                ],
+                "backupPolicy": {
+                    "type": "Periodic",
+                    "periodicModeProperties": {
+                        "backupIntervalInMinutes": 60,
+                        "backupRetentionIntervalInHours": 8,
+                        "backupStorageRedundancy": "Local"
+                    }
+                },
+                "networkAclBypassResourceIds": [],
+                "diagnosticLogSettings": {
+                    "enableFullTextQuery": "None"
+                },
+                "capacity": {
+                    "totalThroughputLimit": 4000
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases",
+            "apiVersion": "2021-11-15-preview",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "test"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+            "apiVersion": "2021-11-15-preview",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/ais')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "ais",
+                    "indexes": [
+                        {
+                            "key": {
+                                "keys": [
+                                    "_id"
+                                ]
+                            }
+                        },
+                        {
+                            "key": {
+                                "keys": [
+                                    "location.geometry"
+                                ]
+                            }
+                        },
+                        {
+                            "key": {
+                                "keys": [
+                                    "mmsi"
+                                ]
+                            }
+                        },
+                        {
+                            "key": {
+                                "keys": [
+                                    "missionId"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+            "apiVersion": "2021-11-15-preview",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/annotations')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "annotations",
+                    "indexes": [
+                        {
+                            "key": {
+                                "keys": [
+                                    "_id"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+            "apiVersion": "2021-11-15-preview",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/clips')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "clips",
+                    "indexes": [
+                        {
+                            "key": {
+                                "keys": [
+                                    "_id"
+                                ]
+                            }
+                        },
+                        {
+                            "key": {
+                                "keys": [
+                                    "missionId"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+            "apiVersion": "2021-11-15-preview",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/crispevents')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "crispevents",
+                    "indexes": [
+                        {
+                            "key": {
+                                "keys": [
+                                    "_id"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+            "apiVersion": "2021-11-15-preview",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/images')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts',concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "images",
+                    "indexes": [
+                        {
+                            "key": {
+                                "keys": [
+                                    "_id"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+            "apiVersion": "2021-11-15-preview",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/missions')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "missions",
+                    "indexes": [
+                        {
+                            "key": {
+                                "keys": [
+                                    "_id"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+            "apiVersion": "2021-11-15-preview",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/mprs')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "mprs",
+                    "indexes": [
+                        {
+                            "key": {
+                                "keys": [
+                                    "_id"
+                                ]
+                            }
+                        },
+                        {
+                            "key": {
+                                "keys": [
+                                    "mprId"
+                                ]
+                            }
+                        },
+                        {
+                            "key": {
+                                "keys": [
+                                    "location.geometry"
+                                ]
+                            }
+                        },
+                        {
+                            "key": {
+                                "keys": [
+                                    "missionId"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+            "apiVersion": "2021-11-15-preview",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/payloads')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "payloads",
+                    "indexes": [
+                        {
+                            "key": {
+                                "keys": [
+                                    "_id"
+                                ]
+                            }
+                        },
+                        {
+                            "key": {
+                                "keys": [
+                                    "missionId"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+            "apiVersion": "2021-11-15-preview",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/system.indexes')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "system.indexes",
+                    "indexes": [
+                        {
+                            "key": {
+                                "keys": [
+                                    "_id"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+            "apiVersion": "2021-11-15-preview",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/users')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "users",
+                    "indexes": [
+                        {
+                            "key": {
+                                "keys": [
+                                    "_id"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
+            "apiVersion": "2021-11-15-preview",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/visintfindings')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "resource": {
+                    "id": "visintfindings",
+                    "indexes": [
+                        {
+                            "key": {
+                                "keys": [
+                                    "_id"
+                                ]
+                            }
+                        },
+                        {
+                            "key": {
+                                "keys": [
+                                    "missionId"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateEndpoints",
+            "apiVersion": "2020-11-01",
+            "name": "[concat('CrispMongoDBEndpoint', parameters('Environment'))]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "privateLinkServiceConnections": [
+                    {
+                        "name": "[concat('CrispMongoDBEndpoint', parameters('Environment'))]",
+                        "properties": {
+                            "privateLinkServiceId": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/DATA', parameters('Environment'),'/providers/Microsoft.DocumentDb/databaseAccounts/', parameters('mongodb'), parameters('Environment'))]",
+                            "groupIds": [
+                                "MongoDB"
+                            ],
+                            "privateLinkServiceConnectionState": {
+                                "status": "Approved",
+                                "actionsRequired": "None"
+                            }
+                        }
+                    }
+                ],
+                "manualPrivateLinkServiceConnections": [],
+                "subnet": {
+                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-AKS'), parameters('Environment'))]"
+                },
+                "customDnsConfigs": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+            "apiVersion": "2020-11-01",
+            "name": "[concat('CrispMongoDBEndpoint', parameters('Environment'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateEndpoints', concat('CrispMongoDBEndpoint', parameters('Environment')))]"
+            ],
+            "properties": {
+                "privateDnsZoneConfigs": [
+                    {
+                        "name": "privatelink-mongo-cosmos-azure-com",
+                        "properties": {
+                            "privateDnsZoneId": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/privateDnsZones/privatelink.mongo.cosmos.azure.com')]"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "outputs": {}
+}
