@@ -31,7 +31,7 @@
             "name": "[concat(parameters('mongodb'), parameters('Environment'))]",
             "type": "Microsoft.DocumentDB/databaseAccounts",
             "apiVersion": "2021-10-15-preview",
-            "location": "West US",
+            "location": "[resourceGroup().location]",
             "tags": {
                 "defaultExperience": "Azure Cosmos DB for MongoDB API",
                 "hidden-cosmos-mmspecial": ""
@@ -71,7 +71,7 @@
                 },
                 "locations": [
                     {
-                        "locationName": "West US",
+                        "locationName": "[resourceGroup().location]",
                         "provisioningState": "Succeeded",
                         "failoverPriority": 0,
                         "isZoneRedundant": false
