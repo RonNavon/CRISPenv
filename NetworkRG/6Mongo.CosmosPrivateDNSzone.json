@@ -103,7 +103,7 @@
         {
             "type": "Microsoft.Network/privateDnsZones/A",
             "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('DNSmongo'), '/crispmongodb-', parameters('Environment'),'-', resourceGroup().location)]",
+            "name": "[concat(parameters('DNSmongo'), '/crispmongodb', parameters('Environment'),'-', resourceGroup().location)]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSmongo'))]"
             ],
