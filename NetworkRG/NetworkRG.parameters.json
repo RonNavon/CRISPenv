@@ -64,6 +64,15 @@
         },
         "DNSmongo": {
             "value": "privatelink.mongo.cosmos.azure.com"
+        },
+        "DNSstorage": {
+            "value": "privatelink.file.core.windows.net"
+        },
+        "DNSredis": {
+            "value": "privatelink.redis.cache.windows.net"
+        },
+        "Environment2": {
+            "value": "test"
         }
     }
 }
