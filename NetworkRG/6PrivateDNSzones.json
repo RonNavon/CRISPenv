@@ -1,0 +1,156 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Environment": {
+            "type": "string"
+        },
+        "Vnet": {
+            "type": "string"
+        },
+        "SubscriptionID": {
+            "type": "string"
+        },
+        "PublicIP-CrispJuniper": {
+            "type": "string"
+        },
+        "PublicIP-JuniperPublic1": {
+            "type": "string"
+        },
+        "PublicIP-JuniperPublic2": {
+            "type": "string"
+        },
+        "PublicIP-CrispVPN": {
+            "type": "string"
+        },
+        "SUB-JuniperPrivate": {
+            "type": "string"
+        },
+        "SUB-JuniperPublic1": {
+            "type": "string"
+        },
+        "SUB-VDS": {
+            "type": "string"
+        },
+        "SUB-AKS": {
+            "type": "string"
+        },
+        "SUB-AKSInternal": {
+            "type": "string"
+        },
+        "NIC-JuniperPublic1": {
+            "type": "string"
+        },
+        "NIC-JuniperPublic2": {
+            "type": "string"
+        },
+        "NIC-CrispJuniper": {
+            "type": "string"
+        },
+        "NSG-CrispJuniper": {
+            "type": "string"
+        },
+        "NSG-AKS": {
+            "type": "string"
+        },
+        "NSG-GITLab": {
+            "type": "string"
+        },
+        "NSG-VDS": {
+            "type": "string"
+        },
+        "RT-VDSRoute": {
+            "type": "string"
+        },
+        "DNSmongo": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+          {
+            "type": "Microsoft.Network/privateDnsZones",
+            "apiVersion": "2018-09-01",
+            "name": "[parameters('DNSmongo')]",
+            "location": "global",
+            "properties": {
+                "maxNumberOfRecordSets": 25000,
+                "maxNumberOfVirtualNetworkLinks": 1000,
+                "maxNumberOfVirtualNetworkLinksWithRegistration": 100,
+                "numberOfRecordSets": 3,
+                "numberOfVirtualNetworkLinks": 1,
+                "numberOfVirtualNetworkLinksWithRegistration": 0,
+                "provisioningState": "Succeeded"
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones/A",
+            "apiVersion": "2018-09-01",
+            "name": "[concat(parameters('DNSmongo'), '/crispmongodb', parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSmongo'))]"
+            ],
+            "properties": {
+                "ttl": 10,
+                "aRecords": [
+                    {
+                        "ipv4Address": "10.1.0.5"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones/A",
+            "apiVersion": "2018-09-01",
+            "name": "[concat(parameters('DNSmongo'), '/crispmongodb-', parameters('Environment'),'-', resourceGroup().location)]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSmongo'))]"
+            ],
+            "properties": {
+                "ttl": 10,
+                "aRecords": [
+                    {
+                        "ipv4Address": "10.1.0.6"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones/SOA",
+            "apiVersion": "2018-09-01",
+            "name": "[concat(parameters('DNSmongo'), '/@')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSmongo'))]"
+            ],
+            "properties": {
+                "ttl": 3600,
+                "soaRecord": {
+                    "email": "azureprivatedns-host.microsoft.com",
+                    "expireTime": 2419200,
+                    "host": "azureprivatedns.net",
+                    "minimumTtl": 10,
+                    "refreshTime": 3600,
+                    "retryTime": 300,
+                    "serialNumber": 1
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+            "apiVersion": "2018-09-01",
+            "name": "[concat(parameters('DNSmongo'), '/4v2hbvwxvqiok')]",
+            "location": "global",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSmongo'))]"
+            ],
+            "properties": {
+                "registrationEnabled": false,
+                "virtualNetwork": {
+                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'))]"
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}

@@ -61,6 +61,9 @@
         },
         "RT-VDSRoute": {
             "type": "string"
+        },
+        "DNSmongo": {
+            "type": "string"
         }
     },
     "functions": [],
