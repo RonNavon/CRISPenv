@@ -50,7 +50,7 @@
                 ],
                 "manualPrivateLinkServiceConnections": [],
                 "subnet": {
-                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-AKS'), parameters('Environment'))]"
+                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment') ,'/subnets/', parameters('SUB-AKS'), parameters('Environment'))]"
                 },
                 "customDnsConfigs": []
             }
