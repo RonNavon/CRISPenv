@@ -71,7 +71,7 @@
                 },
                 "locations": [
                     {
-                        "locationName": "[resourceGroup().name]",
+                        "locationName": "[resourceGroup().location]",
                         "provisioningState": "Succeeded",
                         "failoverPriority": 0,
                         "isZoneRedundant": false
