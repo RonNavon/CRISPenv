@@ -143,6 +143,24 @@
             }
         },
         {
+            "type": "Microsoft.DocumentDB/databaseAccounts/privateEndpointConnections",
+            "apiVersion": "2021-05-15",
+            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/CrispMongoDBEndpoint', parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+            ],
+            "properties": {
+                "provisioningState": "Succeeded",
+                "groupId": "MongoDB",
+                "privateEndpoint": {
+                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'))]"
+                },
+                "privateLinkServiceConnectionState": {
+                    "status": "Approved"
+                }
+            }
+        },
+        {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
             "apiVersion": "2021-05-15",
             "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/ais')]",
