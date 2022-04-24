@@ -1,7 +1,29 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
+    "parameters": {
+          "Environment": {
+            "type": "string"
+        },
+        "Environment2": {
+            "type": "string"
+        },
+        "Vnet": {
+            "type": "string"
+        },
+        "SUB-VDS": {
+            "type": "string"
+        },
+        "SUB-AKS": {
+            "type": "string"
+        },
+        "SubscriptionID": {
+            "type": "string"
+        },
+        "mongodb": {
+            "type": "string"
+        }
+    },
     "functions": [],
     "variables": {},
     "resources": [],
