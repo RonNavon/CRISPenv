@@ -28,6 +28,7 @@
     "variables": {},
     "resources": [
         {
+            /**CrispMongoDBEndpoint*/
             "type": "Microsoft.Network/privateEndpoints",
             "apiVersion": "2020-11-01",
             "name": "[concat('CrispMongoDBEndpoint', parameters('Environment'))]",
@@ -73,6 +74,9 @@
                 ]
             }
         }
+        /**CrispRedisEndpoint*/
+        /**crispvdsstoragecrt*/
+
     ],
     "outputs": {}
 }

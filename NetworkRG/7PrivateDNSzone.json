@@ -78,7 +78,8 @@
     "functions": [],
     "variables": {},
     "resources": [
-          {
+        /**privatelink.mongo.cosmos.azure.com*/
+        {
             "type": "Microsoft.Network/privateDnsZones",
             "apiVersion": "2018-09-01",
             "name": "[parameters('DNSmongo')]",
@@ -160,7 +161,7 @@
                 }
             }
         },
-/**privatelink.file.core.windows.net*/
+        /**privatelink.file.core.windows.net*/
         {
             "type": "Microsoft.Network/privateDnsZones",
             "apiVersion": "2018-09-01",
@@ -228,7 +229,7 @@
             }
         },
         /**privatelink.redis.cache.windows.net*/
-                {
+        {
             "type": "Microsoft.Network/privateDnsZones",
             "apiVersion": "2018-09-01",
             "name": "[parameters('DNSredis')]",
