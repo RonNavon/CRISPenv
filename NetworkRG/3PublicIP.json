@@ -1,0 +1,143 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Environment": {
+            "type": "string"
+        },
+        "Vnet": {
+            "type": "string"
+        },
+        "SubscriptionID": {
+            "type": "string"
+        },
+        "PublicIP-CrispJuniper": {
+            "type": "string"
+        },
+        "PublicIP-JuniperPublic1": {
+            "type": "string"
+        },
+        "PublicIP-JuniperPublic2": {
+            "type": "string"
+        },
+        "PublicIP-CrispVPN": {
+            "type": "string"
+        },
+        "SUB-JuniperPrivate": {
+            "type": "string"
+        },
+        "SUB-JuniperPublic1": {
+            "type": "string"
+        },
+        "SUB-VDS": {
+            "type": "string"
+        },
+        "SUB-AKS": {
+            "type": "string"
+        },
+        "SUB-AKSInternal": {
+            "type": "string"
+        },
+        "NIC-JuniperPublic1": {
+            "type": "string"
+        },
+        "NIC-JuniperPublic2": {
+            "type": "string"
+        },
+        "NIC-CrispJuniper": {
+            "type": "string"
+        },
+        "NSG-CrispJuniper": {
+            "type": "string"
+        },
+        "NSG-AKS": {
+            "type": "string"
+        },
+        "NSG-GITLab": {
+            "type": "string"
+        },
+        "NSG-VDS": {
+            "type": "string"
+        },
+        "RT-VDSRoute": {
+            "type": "string"
+        },
+        "DNSmongo": {
+            "type": "string"
+        },
+        "DNSstorage": {
+            "type": "string"
+        },
+        "DNSredis": {
+            "type": "string"
+        },
+        "Environment2": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+         {
+            "name": "[concat(parameters('PublicIP-CrispJuniper'), parameters('Environment'))]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4
+            }
+        },
+        {
+            "name": "[concat(parameters('PublicIP-JuniperPublic1'), parameters('Environment'))]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4
+            }
+        },
+        {
+            "name": "[concat(parameters('PublicIP-JuniperPublic2'), parameters('Environment'))]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4
+            }
+        },
+        {
+            "name": "[concat(parameters('PublicIP-CrispVPN'), parameters('Environment'))]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4
+            }
+        }
+    ],
+    "outputs": {}
+}
