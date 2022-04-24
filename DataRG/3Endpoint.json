@@ -37,6 +37,10 @@
                     {
                         "name": "[concat('CrispMongoDBEndpoint', parameters('Environment'))]",
                         "properties": {
+                            "privateLinkServiceId": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/DATA', parameters('Environment'),'/providers/Microsoft.DocumentDb/databaseAccounts/', parameters('mongodb'), parameters('Environment'))]",
+                            "groupIds": [
+                                "MongoDB"
+                            ],
                             "privateLinkServiceConnectionState": {
                                 "status": "Approved",
                                 "actionsRequired": "None"
