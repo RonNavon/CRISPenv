@@ -46,7 +46,7 @@
                 },
                 "subnets": [
                     {
-                        "name": "[concat('SUB-AKS', parameters('Environment'))]",
+                        "name": "[concat('AKS', parameters('Environment'))]",
                         "properties": {
                             "addressPrefix": "10.1.0.0/16",
                             "networkSecurityGroup": {

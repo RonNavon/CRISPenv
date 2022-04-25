@@ -131,7 +131,7 @@
         },
         {
             "type": "Microsoft.ContainerService/managedClusters/agentPools",
-            "apiVersion": "2022-02-02-preview",
+            "apiVersion": "2021-11-01-preview",
             "name": "[CONCAT('CrispAKS', parameters('Environment'), '/crisppool', parameters('Environment'))]",
             "dependsOn": [
                 "[resourceId('Microsoft.ContainerService/managedClusters', CONCAT('CrispAKS', parameters('Environment')))]"
