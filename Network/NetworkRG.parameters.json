@@ -5,9 +5,6 @@
         "Environment": {
             "value": "-test"
         },
-        "Vnet": {
-            "value": "CRISPNetwork"
-        },
         "SubscriptionID": {
             "value": "60327e1f-6528-4368-8b35-ed6e547313e6"
         },

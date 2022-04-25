@@ -5,9 +5,6 @@
         "Environment": {
             "type": "string"
         },
-        "Vnet": {
-            "type": "string"
-        },
         "SubscriptionID": {
             "type": "string"
         },
@@ -30,7 +27,7 @@
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
                             "subnet": {
-                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', 'GatewaySubnet')]"
+                                "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/CRISPNetwork', parameters('Environment'),'/subnets/', 'GatewaySubnet')]"
                             },
                             "publicIPAddress": {
                                 "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/publicIPAddresses/PublicIP-CrispVPN', parameters('Environment'))]"
