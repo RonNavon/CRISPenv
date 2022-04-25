@@ -11,54 +11,6 @@
         "SubscriptionID": {
             "type": "string"
         },
-        "PublicIP-CrispJuniper": {
-            "type": "string"
-        },
-        "PublicIP-JuniperPublic1": {
-            "type": "string"
-        },
-        "PublicIP-JuniperPublic2": {
-            "type": "string"
-        },
-        "PublicIP-CrispVPN": {
-            "type": "string"
-        },
-        "SUB-JuniperPrivate": {
-            "type": "string"
-        },
-        "SUB-JuniperPublic1": {
-            "type": "string"
-        },
-        "SUB-VDS": {
-            "type": "string"
-        },
-        "SUB-AKS": {
-            "type": "string"
-        },
-        "SUB-AKSInternal": {
-            "type": "string"
-        },
-        "NIC-JuniperPublic1": {
-            "type": "string"
-        },
-        "NIC-JuniperPublic2": {
-            "type": "string"
-        },
-        "NIC-CrispJuniper": {
-            "type": "string"
-        },
-        "NSG-CrispJuniper": {
-            "type": "string"
-        },
-        "NSG-AKS": {
-            "type": "string"
-        },
-        "NSG-GITLab": {
-            "type": "string"
-        },
-        "NSG-VDS": {
-            "type": "string"
-        },
         "DNSmongo": {
             "type": "string"
         },
@@ -90,7 +42,7 @@
                                 "id": "[concat('/subscriptions/',parameters('SubscriptionID'),'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/virtualNetworks/',parameters('Vnet'), parameters('Environment'),'/subnets/', 'GatewaySubnet')]"
                             },
                             "publicIPAddress": {
-                                "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/publicIPAddresses/', parameters('PublicIP-CrispVPN'), parameters('Environment'))]"
+                                "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/', resourceGroup().name,'/providers/Microsoft.Network/publicIPAddresses/PublicIP-CrispVPN', parameters('Environment'))]"
                             }
                         }
                     }

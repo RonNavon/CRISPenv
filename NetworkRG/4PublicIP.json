@@ -11,54 +11,6 @@
         "SubscriptionID": {
             "type": "string"
         },
-        "PublicIP-CrispJuniper": {
-            "type": "string"
-        },
-        "PublicIP-JuniperPublic1": {
-            "type": "string"
-        },
-        "PublicIP-JuniperPublic2": {
-            "type": "string"
-        },
-        "PublicIP-CrispVPN": {
-            "type": "string"
-        },
-        "SUB-JuniperPrivate": {
-            "type": "string"
-        },
-        "SUB-JuniperPublic1": {
-            "type": "string"
-        },
-        "SUB-VDS": {
-            "type": "string"
-        },
-        "SUB-AKS": {
-            "type": "string"
-        },
-        "SUB-AKSInternal": {
-            "type": "string"
-        },
-        "NIC-JuniperPublic1": {
-            "type": "string"
-        },
-        "NIC-JuniperPublic2": {
-            "type": "string"
-        },
-        "NIC-CrispJuniper": {
-            "type": "string"
-        },
-        "NSG-CrispJuniper": {
-            "type": "string"
-        },
-        "NSG-AKS": {
-            "type": "string"
-        },
-        "NSG-GITLab": {
-            "type": "string"
-        },
-        "NSG-VDS": {
-            "type": "string"
-        },
         "DNSmongo": {
             "type": "string"
         },
@@ -76,7 +28,7 @@
     "variables": {},
     "resources": [
          {
-            "name": "[concat(parameters('PublicIP-CrispJuniper'), parameters('Environment'))]",
+            "name": "[concat('PublicIP-CrispJuniper', parameters('Environment'))]",
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2020-11-01",
             "location": "[resourceGroup().location]",
@@ -91,7 +43,7 @@
             }
         },
         {
-            "name": "[concat(parameters('PublicIP-JuniperPublic1'), parameters('Environment'))]",
+            "name": "[concat('PublicIP-JuniperPublic1', parameters('Environment'))]",
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2020-11-01",
             "location": "[resourceGroup().location]",
@@ -106,7 +58,7 @@
             }
         },
         {
-            "name": "[concat(parameters('PublicIP-JuniperPublic2'), parameters('Environment'))]",
+            "name": "[concat('PublicIP-JuniperPublic2', parameters('Environment'))]",
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2020-11-01",
             "location": "[resourceGroup().location]",
@@ -121,7 +73,7 @@
             }
         },
         {
-            "name": "[concat(parameters('PublicIP-CrispVPN'), parameters('Environment'))]",
+            "name": "[concat('PublicIP-CrispVPN', parameters('Environment'))]",
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2020-11-01",
             "location": "[resourceGroup().location]",
