@@ -65,7 +65,7 @@
                                 }
                             ],
                             "delegations": [],
-                            "privateEndpointNetworkPolicies": "Disabled",
+                            "privateEndpointNetworkPolicies": "Enabled",
                             "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     },
@@ -227,7 +227,7 @@
                                 }
                             ],
                             "delegations": [],
-                            "privateEndpointNetworkPolicies": "Disabled",
+                            "privateEndpointNetworkPolicies": "Enabled",
                             "privateLinkServiceNetworkPolicies": "Enabled"
                         }
                     },
