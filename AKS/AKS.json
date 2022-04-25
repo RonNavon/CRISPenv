@@ -76,7 +76,6 @@
                         "enabled": true,
                         "config": {
                             "HTTPApplicationRoutingZoneName": "[concat('AKS', parameters('Environment'),'.', resourceGroup().location, '.aksapp.io')]"
-                            /**Im here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
                         }
                     },
                     "omsAgent": {

@@ -38,7 +38,7 @@
                         "10.30.0.0/16",
                         "10.40.0.0/16",
                         "10.50.0.0/24",
-                        "10.60.0.0/24"                     
+                        "10.60.0.0/24"
                     ]
                 },
                 "subnets": [
@@ -54,7 +54,7 @@
                                     "service": "Microsoft.AzureCosmosDB",
                                     "locations": [
                                         "*"
-                                    ] 
+                                    ]
                                 },
                                 {
                                     "service": "Microsoft.Storage",
