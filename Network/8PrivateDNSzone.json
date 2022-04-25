@@ -66,7 +66,7 @@
         {
             "type": "Microsoft.Network/privateDnsZones/SOA",
             "apiVersion": "2018-09-01",
-            "name": "privatelink.mongo.cosmos.azure.com/@'",
+            "name": "privatelink.mongo.cosmos.azure.com/@",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.mongo.cosmos.azure.com')]"
             ],
