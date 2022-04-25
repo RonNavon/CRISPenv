@@ -8,19 +8,7 @@
         "Environment2": {
             "type": "string"
         },
-        "Vnet": {
-            "type": "string"
-        },
-        "SUB-VDS": {
-            "type": "string"
-        },
-        "SUB-AKS": {
-            "type": "string"
-        },
         "SubscriptionID": {
-            "type": "string"
-        },
-        "mongodb": {
             "type": "string"
         }
     },

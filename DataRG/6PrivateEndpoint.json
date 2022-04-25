@@ -8,19 +8,7 @@
         "Environment2": {
             "type": "string"
         },
-        "Vnet": {
-            "type": "string"
-        },
-        "SUB-VDS": {
-            "type": "string"
-        },
-        "SUB-AKS": {
-            "type": "string"
-        },
         "SubscriptionID": {
-            "type": "string"
-        },
-        "mongodb": {
             "type": "string"
         }
     },
@@ -38,7 +26,7 @@
                     {
                         "name": "[concat('CrispMongoDBEndpoint', parameters('Environment'))]",
                         "properties": {
-                            "privateLinkServiceId": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/DATA', parameters('Environment'),'/providers/Microsoft.DocumentDb/databaseAccounts/', parameters('mongodb'), parameters('Environment'))]",
+                            "privateLinkServiceId": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/DATA', parameters('Environment'),'/providers/Microsoft.DocumentDb/databaseAccounts/crispmongodb', parameters('Environment'))]",
                             "groupIds": [
                                 "MongoDB"
                             ],
@@ -51,7 +39,7 @@
                 ],
                 "manualPrivateLinkServiceConnections": [],
                 "subnet": {
-                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment') ,'/subnets/', parameters('SUB-AKS'), parameters('Environment'))]"
+                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/CRISPNetwork', parameters('Environment') ,'/subnets/AKS', parameters('Environment'))]"
                 },
                 "customDnsConfigs": []
             }
@@ -99,7 +87,7 @@
                 ],
                 "manualPrivateLinkServiceConnections": [],
                 "subnet": {
-                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'), '/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment') ,'/subnets/', parameters('SUB-AKS'), parameters('Environment'))]"
+                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'), '/providers/Microsoft.Network/virtualNetworks/CRISPNetwork', parameters('Environment') ,'/subnets/AKS', parameters('Environment'))]"
                 },
                 "customDnsConfigs": []
             }
@@ -147,7 +135,7 @@
                 ],
                 "manualPrivateLinkServiceConnections": [],
                 "subnet": {
-                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'), '/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment') ,'/subnets/', parameters('SUB-VDS'), parameters('Environment'))]"
+                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'), '/providers/Microsoft.Network/virtualNetworks/CRISPNetwork', parameters('Environment') ,'/subnets/VDS', parameters('Environment'))]"
                 },
                 "customDnsConfigs": []
             }

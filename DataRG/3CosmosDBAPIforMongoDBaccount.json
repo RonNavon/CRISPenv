@@ -8,19 +8,7 @@
         "Environment2": {
             "type": "string"
         },
-        "Vnet": {
-            "type": "string"
-        },
-        "SUB-VDS": {
-            "type": "string"
-        },
-        "SUB-AKS": {
-            "type": "string"
-        },
         "SubscriptionID": {
-            "type": "string"
-        },
-        "mongodb": {
             "type": "string"
         }
     },
@@ -28,7 +16,7 @@
     "variables": {},
     "resources": [
         {
-            "name": "[concat(parameters('mongodb'), parameters('Environment'))]",
+            "name": "[concat('crispmongodb', parameters('Environment'))]",
             "type": "Microsoft.DocumentDB/databaseAccounts",
             "apiVersion": "2021-10-15-preview",
             "location": "[resourceGroup().location]",
@@ -47,7 +35,7 @@
                 "isVirtualNetworkFilterEnabled": true,
                 "virtualNetworkRules": [
                     {
-                        "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/', parameters('Vnet'), parameters('Environment'),'/subnets/', parameters('SUB-AKS'), parameters('Environment'))]",
+                        "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/CRISPNetwork', parameters('Environment'),'/subnets/AKS', parameters('Environment'))]",
                         "ignoreMissingVNetServiceEndpoint": false
                     }
                 ],
@@ -132,9 +120,9 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases",
             "apiVersion": "2021-05-15",
-            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test')]",
+            "name": "[concat('crispmongodb', parameters('Environment'), '/test')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat('crispmongodb', parameters('Environment')))]"
             ],
             "properties": {
                 "resource": {
@@ -145,10 +133,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
             "apiVersion": "2021-05-15",
-            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/ais')]",
+            "name": "[concat('crispmongodb', parameters('Environment'), '/test/ais')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat('crispmongodb', parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat('crispmongodb', parameters('Environment')))]"
             ],
             "properties": {
                 "resource": {
@@ -189,10 +177,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
             "apiVersion": "2021-05-15",
-            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/annotations')]",
+            "name": "[concat('crispmongodb', parameters('Environment'), '/test/annotations')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat('crispmongodb', parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat('crispmongodb', parameters('Environment')))]"
             ],
             "properties": {
                 "resource": {
@@ -212,10 +200,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
             "apiVersion": "2021-05-15",
-            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/clips')]",
+            "name": "[concat('crispmongodb', parameters('Environment'), '/test/clips')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat('crispmongodb', parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat('crispmongodb', parameters('Environment')))]"
             ],
             "properties": {
                 "resource": {
@@ -242,10 +230,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
             "apiVersion": "2021-05-15",
-            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/crispevents')]",
+            "name": "[concat('crispmongodb', parameters('Environment'), '/test/crispevents')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat('crispmongodb', parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat('crispmongodb', parameters('Environment')))]"
             ],
             "properties": {
                 "resource": {
@@ -265,10 +253,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
             "apiVersion": "2021-05-15",
-            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/images')]",
+            "name": "[concat('crispmongodb', parameters('Environment'), '/test/images')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts',concat(parameters('mongodb'), parameters('Environment')))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat('crispmongodb', parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts',concat('crispmongodb', parameters('Environment')))]"
             ],
             "properties": {
                 "resource": {
@@ -288,10 +276,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
             "apiVersion": "2021-05-15",
-            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/missions')]",
+            "name": "[concat('crispmongodb', parameters('Environment'), '/test/missions')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat('crispmongodb', parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat('crispmongodb', parameters('Environment')))]"
             ],
             "properties": {
                 "resource": {
@@ -311,10 +299,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
             "apiVersion": "2021-05-15",
-            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/mprs')]",
+            "name": "[concat('crispmongodb', parameters('Environment'), '/test/mprs')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat('crispmongodb', parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat('crispmongodb', parameters('Environment')))]"
             ],
             "properties": {
                 "resource": {
@@ -355,10 +343,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
             "apiVersion": "2021-05-15",
-            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/payloads')]",
+            "name": "[concat('crispmongodb', parameters('Environment'), '/test/payloads')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat('crispmongodb', parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat('crispmongodb', parameters('Environment')))]"
             ],
             "properties": {
                 "resource": {
@@ -385,10 +373,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
             "apiVersion": "2021-05-15",
-            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/system.indexes')]",
+            "name": "[concat('crispmongodb', parameters('Environment'), '/test/system.indexes')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat('crispmongodb', parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat('crispmongodb', parameters('Environment')))]"
             ],
             "properties": {
                 "resource": {
@@ -408,10 +396,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
             "apiVersion": "2021-05-15",
-            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/users')]",
+            "name": "[concat('crispmongodb', parameters('Environment'), '/test/users')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat('crispmongodb', parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat('crispmongodb', parameters('Environment')))]"
             ],
             "properties": {
                 "resource": {
@@ -431,10 +419,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongodbDatabases/collections",
             "apiVersion": "2021-05-15",
-            "name": "[concat(parameters('mongodb'), parameters('Environment'), '/test/visintfindings')]",
+            "name": "[concat('crispmongodb', parameters('Environment'), '/test/visintfindings')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat(parameters('mongodb'), parameters('Environment')), 'test')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat(parameters('mongodb'), parameters('Environment')))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/mongodbDatabases', concat('crispmongodb', parameters('Environment')), 'test')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', concat('crispmongodb', parameters('Environment')))]"
             ],
             "properties": {
                 "resource": {
