@@ -1,0 +1,15 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Environment": {
+            "value": "-test"
+        },
+        "Environment2": {
+            "value": "test"
+        },
+        "SubscriptionID": {
+            "value": "60327e1f-6528-4368-8b35-ed6e547313e6"
+        }
+    }
+}

@@ -1,0 +1,167 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Environment": {
+            "type": "string"
+        },
+        "Environment2": {
+            "type": "string"
+        },
+        "SubscriptionID": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.ContainerService/managedClusters",
+            "apiVersion": "2021-11-01-preview",
+            "name": "[CONCAT('CrispAKS', parameters('Environment'))]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Paid"
+            },
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "kubernetesVersion": "1.20.13",
+                "dnsPrefix": "[concat('CrispAKS-DNS', parameters('Environment'))]",
+                "agentPoolProfiles": [
+                    {
+                        "name": "[concat('crisppool', parameters('Environment'))]",
+                        "count": 8,
+                        "vmSize": "Standard_D2as_v4",
+                        "osDiskSizeGB": 128,
+                        "osDiskType": "Managed",
+                        "kubeletDiskType": "OS",
+                        "vnetSubnetID": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Network', parameters('Environment'),'/providers/Microsoft.Network/virtualNetworks/CRISPNetwork', parameters('Environment'),'/subnets/AKS', parameters('Environment'))]",
+                        "maxPods": 110,
+                        "type": "VirtualMachineScaleSets",
+                        "availabilityZones": [
+                            "1",
+                            "2",
+                            "3"
+                        ],
+                        "enableAutoScaling": false,
+                        "powerState": {
+                            "code": "Running"
+                        },
+                        "orchestratorVersion": "1.20.13",
+                        "enableNodePublicIP": false,
+                        "mode": "System",
+                        "osType": "Linux",
+                        "osSKU": "Ubuntu",
+                        "enableFIPS": false
+                    }
+                ],
+                "windowsProfile": {
+                    "adminUsername": "azureuser",
+                    "enableCSIProxy": true
+                },
+                "servicePrincipalProfile": {
+                    "clientId": "msi"
+                },
+                "addonProfiles": {
+                    "azureKeyvaultSecretsProvider": {
+                        "enabled": false
+                    },
+                    "azurepolicy": {
+                        "enabled": true
+                    },
+                    "httpApplicationRouting": {
+                        "enabled": true,
+                        "config": {
+                            "HTTPApplicationRoutingZoneName": "[concat('AKS', parameters('Environment'),'.', resourceGroup().location, '.aksapp.io')]"
+                            /**Im here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+                        }
+                    },
+                    "omsAgent": {
+                        "enabled": true,
+                        "config": {
+                            "logAnalyticsWorkspaceResourceID": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/logAnalyticsWorkspaceRG/providers/microsoft.operationalinsights/workspaces/crisploganalytics', parameters('Environment'))]"
+                        }
+                    }
+                },
+                "nodeResourceGroup": "[concat('Kubernetes', parameters('Environment'))]",
+                "enableRBAC": true,
+                "networkProfile": {
+                    "networkPlugin": "azure",
+                    "networkPolicy": "azure",
+                    "loadBalancerSku": "Standard",
+                    "loadBalancerProfile": {
+                        "managedOutboundIPs": {
+                            "count": 1
+                        },
+                        "effectiveOutboundIPs": [
+                            {
+                                "id": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Kubernetes', parameters('Environment'), '/providers/Microsoft.Network/publicIPAddresses/PublicIP-Kubernetes', parameters('Environment'), 'aks-slb-managed-outbound-ip')]"
+                            }
+                        ]
+                    },
+                    "serviceCidr": "10.3.0.0/16",
+                    "dnsServiceIP": "10.3.0.10",
+                    "dockerBridgeCidr": "172.17.0.1/16",
+                    "outboundType": "loadBalancer"
+                },
+                "aadProfile": {
+                    "managed": true,
+                    "adminGroupObjectIDs": [
+                        "637b7a20-7e9f-4daa-a462-58811c60aea3"
+                    ],
+                    "tenantID": "d141ee51-674b-4090-9686-5f497621f783"
+                },
+                "apiServerAccessProfile": {
+                    "enablePrivateCluster": false
+                },
+                "identityProfile": {
+                    "kubeletidentity": {
+                        "resourceId": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Kubernetes', parameters('Environment'), '/providers/Microsoft.ManagedIdentity/userAssignedIdentities/CrispAKS', parameters('Environment'), '-agentpool')]",
+                        "clientId": "817cbf2a-994d-4243-b49f-76396707b723",
+                        "objectId": "70c7fa51-a5a4-4015-9a62-aedeed7d8a24"
+                    }
+                },
+                "oidcIssuerProfile": {
+                    "enabled": false
+                }
+            }
+        },
+        {
+            "type": "Microsoft.ContainerService/managedClusters/agentPools",
+            "apiVersion": "2022-02-02-preview",
+            "name": "[CONCAT('CrispAKS', parameters('Environment'), '/crisppool', parameters('Environment'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ContainerService/managedClusters', CONCAT('CrispAKS', parameters('Environment')))]"
+            ],
+            "properties": {
+                "count": 8,
+                "vmSize": "Standard_D2as_v4",
+                "osDiskSizeGB": 128,
+                "osDiskType": "Managed",
+                "kubeletDiskType": "OS",
+                "vnetSubnetID": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'), '/providers/Microsoft.Network/virtualNetworks/CRISPNetwork', parameters('Environment'), '/subnets/AKS', parameters('Environment'))]",
+                "maxPods": 110,
+                "type": "VirtualMachineScaleSets",
+                "availabilityZones": [
+                    "1",
+                    "2",
+                    "3"
+                ],
+                "enableAutoScaling": false,
+                "powerState": {
+                    "code": "Running"
+                },
+                "orchestratorVersion": "1.20.13",
+                "enableNodePublicIP": false,
+                "mode": "System",
+                "osType": "Linux",
+                "osSKU": "Ubuntu",
+                "enableFIPS": false
+            }
+        }
+    ],
+    "outputs": {}
+}

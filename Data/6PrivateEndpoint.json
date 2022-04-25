@@ -110,7 +110,7 @@
                 ]
             }
         },
-        /**crispvdsstoragecrt*/
+        /**crispvdsstorage*/
          {
             "type": "Microsoft.Network/privateEndpoints",
             "apiVersion": "2020-11-01",

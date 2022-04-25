@@ -1,0 +1,94 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Environment": {
+            "type": "string"
+        },
+        "Environment2": {
+            "type": "string"
+        },
+        "SubscriptionID": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-11-01",
+            "name": "[CONCAT('PublicIP-Kubernetes', parameters('Environment'), 'ingress-basic')]",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "kubernetes-cluster-name": "kubernetes",
+                "service": "ingress-basic/nginx-ingress-ingress-nginx-controller"
+            },
+            "sku": {
+                "name": "Standard",
+                "tier": "Regional"
+            },
+            "zones": [
+                "1",
+                "2",
+                "3"
+            ],
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-11-01",
+            "name": "[CONCAT('PublicIP-Kubernetes', parameters('Environment'), 'kube-system')]",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "kubernetes-cluster-name": "kubernetes",
+                "service": "kube-system/addon-http-application-routing-nginx-ingress"
+            },
+            "sku": {
+                "name": "Standard",
+                "tier": "Regional"
+            },
+            "zones": [
+                "1",
+                "2",
+                "3"
+            ],
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2020-11-01",
+            "name": "[CONCAT('PublicIP-Kubernetes', parameters('Environment'), 'aks-slb-managed-outbound-ip')]",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "aks-managed-type": "aks-slb-managed-outbound-ip"
+            },
+            "sku": {
+                "name": "Standard",
+                "tier": "Regional"
+            },
+            "zones": [
+                "3",
+                "1",
+                "2"
+            ],
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 30,
+                "ipTags": []
+            }
+        }
+    ],
+    "outputs": {}
+}

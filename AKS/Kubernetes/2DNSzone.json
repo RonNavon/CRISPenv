@@ -1,0 +1,118 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Environment": {
+            "type": "string"
+        },
+        "Environment2": {
+            "type": "string"
+        },
+        "SubscriptionID": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/dnszones",
+            "apiVersion": "2018-05-01",
+            "name": "[concat('AKS', parameters('Environment'),'.', resourceGroup().location,'.aksapp.io')]",
+            "location": "global",
+            "properties": {
+                "zoneType": "Public"
+            }
+        },
+        {
+            "type": "Microsoft.Network/dnszones/A",
+            "apiVersion": "2018-05-01",
+            "name": "[concat('AKS', parameters('Environment'),'.', resourceGroup().location,'.aksapp.io/chat', parameters('Environment2'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/dnszones', concat('AKS', parameters('Environment'),'.', resourceGroup().location,'.aksapp.io'))]"
+            ],
+            "properties": {
+                "TTL": 3600,
+                "targetResource": {
+                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Kubernetes', parameters('Environment'), '/providers/Microsoft.Network/publicIPAddresses/PublicIP-Kubernetes', parameters('Environment'), 'ingress-basic')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/dnszones/A",
+            "apiVersion": "2018-05-01",
+            "name": "[concat('AKS', parameters('Environment'),'.', resourceGroup().location,'.aksapp.io/crisp', parameters('Environment2'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/dnszones', concat('AKS', parameters('Environment'),'.', resourceGroup().location,'.aksapp.io'))]"
+            ],
+            "properties": {
+                "TTL": 3600,
+                "targetResource": {
+                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Kubernetes', parameters('Environment'), '/providers/Microsoft.Network/publicIPAddresses/PublicIP-Kubernetes', parameters('Environment'), 'ingress-basic')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/dnszones/A",
+            "apiVersion": "2018-05-01",
+            "name": "[concat('AKS', parameters('Environment'),'.', resourceGroup().location,'.aksapp.io/rc')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/dnszones', concat('AKS', parameters('Environment'),'.', resourceGroup().location,'.aksapp.io'))]"
+            ],
+            "properties": {
+                "TTL": 3600,
+                "targetResource": {
+                    "id": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Kubernetes', parameters('Environment'), '/providers/Microsoft.Network/publicIPAddresses/PublicIP-Kubernetes', parameters('Environment'), 'ingress-basic')]"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Network/dnszones/NS",
+            "apiVersion": "2018-05-01",
+            "name": "[concat('AKS', parameters('Environment'),'.', resourceGroup().location,'.aksapp.io/@')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/dnszones', concat('AKS', parameters('Environment'),'.', resourceGroup().location,'.aksapp.io'))]"
+            ],
+            "properties": {
+                "TTL": 172800,
+                "NSRecords": [
+                    {
+                        "nsdname": "ns1-02.azure-dns.com."
+                    },
+                    {
+                        "nsdname": "ns2-02.azure-dns.net."
+                    },
+                    {
+                        "nsdname": "ns3-02.azure-dns.org."
+                    },
+                    {
+                        "nsdname": "ns4-02.azure-dns.info."
+                    }
+                ],
+                "targetResource": {}
+            }
+        },
+        {
+            "type": "Microsoft.Network/dnszones/SOA",
+            "apiVersion": "2018-05-01",
+            "name": "[concat('AKS', parameters('Environment'),'.', resourceGroup().location,'.aksapp.io/@')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/dnszones', concat('AKS', parameters('Environment'),'.', resourceGroup().location,'.aksapp.io'))]"
+            ],
+            "properties": {
+                "TTL": 3600,
+                "SOARecord": {
+                    "email": "azuredns-hostmaster.microsoft.com",
+                    "expireTime": 2419200,
+                    "host": "ns1-02.azure-dns.com.",
+                    "minimumTTL": 300,
+                    "refreshTime": 3600,
+                    "retryTime": 300,
+                    "serialNumber": 1
+                },
+                "targetResource": {}
+            }
+        }
+    ],
+    "outputs": {}
+}
