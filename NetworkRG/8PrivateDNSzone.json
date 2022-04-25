@@ -11,15 +11,6 @@
         "SubscriptionID": {
             "type": "string"
         },
-        "DNSmongo": {
-            "type": "string"
-        },
-        "DNSstorage": {
-            "type": "string"
-        },
-        "DNSredis": {
-            "type": "string"
-        },
         "Environment2": {
             "type": "string"
         }
@@ -31,7 +22,7 @@
         {
             "type": "Microsoft.Network/privateDnsZones",
             "apiVersion": "2018-09-01",
-            "name": "[parameters('DNSmongo')]",
+            "name": "privatelink.mongo.cosmos.azure.com",
             "location": "global",
             "properties": {
                 "maxNumberOfRecordSets": 25000,
@@ -46,9 +37,9 @@
         {
             "type": "Microsoft.Network/privateDnsZones/A",
             "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('DNSmongo'), '/crispmongodb', parameters('Environment'))]",
+            "name": "[concat('privatelink.mongo.cosmos.azure.com/crispmongodb', parameters('Environment'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSmongo'))]"
+                "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.mongo.cosmos.azure.com')]"
             ],
             "properties": {
                 "ttl": 10,
@@ -62,9 +53,9 @@
         {
             "type": "Microsoft.Network/privateDnsZones/A",
             "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('DNSmongo'), '/crispmongodb', parameters('Environment'),'-', resourceGroup().location)]",
+            "name": "[concat('privatelink.mongo.cosmos.azure.com/crispmongodb', parameters('Environment'),'-', resourceGroup().location)]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSmongo'))]"
+                "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.mongo.cosmos.azure.com')]"
             ],
             "properties": {
                 "ttl": 10,
@@ -78,9 +69,9 @@
         {
             "type": "Microsoft.Network/privateDnsZones/SOA",
             "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('DNSmongo'), '/@')]",
+            "name": "privatelink.mongo.cosmos.azure.com/@'",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSmongo'))]"
+                "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.mongo.cosmos.azure.com')]"
             ],
             "properties": {
                 "ttl": 3600,
@@ -98,10 +89,10 @@
         {
             "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
             "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('DNSmongo'), '/4v2hbvwxvqiok')]",
+            "name": "privatelink.mongo.cosmos.azure.com/4v2hbvwxvqiok",
             "location": "global",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSmongo'))]"
+                "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.mongo.cosmos.azure.com')]"
             ],
             "properties": {
                 "registrationEnabled": false,
@@ -114,7 +105,7 @@
         {
             "type": "Microsoft.Network/privateDnsZones",
             "apiVersion": "2018-09-01",
-            "name": "[parameters('DNSstorage')]",
+            "name": "privatelink.file.core.windows.net",
             "location": "global",
             "properties": {
                 "maxNumberOfRecordSets": 25000,
@@ -129,9 +120,9 @@
         {
             "type": "Microsoft.Network/privateDnsZones/A",
             "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('DNSstorage'), '/crispvdsfilestorage', parameters('Environment2'))]",
+            "name": "[concat('privatelink.file.core.windows.net/crispvdsfilestorage', parameters('Environment2'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSstorage'))]"
+                "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.file.core.windows.net')]"
             ],
             "properties": {
                 "ttl": 10,
@@ -145,9 +136,9 @@
         {
             "type": "Microsoft.Network/privateDnsZones/SOA",
             "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('DNSstorage'), '/@')]",
+            "name": "privatelink.file.core.windows.net/@",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSstorage'))]"
+                "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.file.core.windows.net')]"
             ],
             "properties": {
                 "ttl": 3600,
@@ -165,10 +156,10 @@
         {
             "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
             "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('DNSstorage'), '/4v2hbvwxvqiok')]",
+            "name": "privatelink.file.core.windows.net/4v2hbvwxvqiok",
             "location": "global",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSstorage'))]"
+                "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.file.core.windows.net')]"
             ],
             "properties": {
                 "registrationEnabled": false,
@@ -181,7 +172,7 @@
         {
             "type": "Microsoft.Network/privateDnsZones",
             "apiVersion": "2018-09-01",
-            "name": "[parameters('DNSredis')]",
+            "name": "privatelink.redis.cache.windows.net",
             "location": "global",
             "properties": {
                 "maxNumberOfRecordSets": 25000,
@@ -196,9 +187,9 @@
         {
             "type": "Microsoft.Network/privateDnsZones/A",
             "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('DNSredis'), '/crispredis', parameters('Environment'))]",
+            "name": "[concat('privatelink.redis.cache.windows.net/crispredis', parameters('Environment'))]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSredis'))]"
+                "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.redis.cache.windows.net')]"
             ],
             "properties": {
                 "ttl": 10,
@@ -212,9 +203,9 @@
         {
             "type": "Microsoft.Network/privateDnsZones/SOA",
             "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('DNSredis'), '/@')]",
+            "name": "privatelink.redis.cache.windows.net/@",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSredis'))]"
+                "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.redis.cache.windows.net')]"
             ],
             "properties": {
                 "ttl": 3600,
@@ -232,10 +223,10 @@
         {
             "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
             "apiVersion": "2018-09-01",
-            "name": "[concat(parameters('DNSredis'), '/4v2hbvwxvqiok')]",
+            "name": "privatelink.redis.cache.windows.net/4v2hbvwxvqiok",
             "location": "global",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/privateDnsZones', parameters('DNSredis'))]"
+                "[resourceId('Microsoft.Network/privateDnsZones', 'privatelink.redis.cache.windows.net')]"
             ],
             "properties": {
                 "registrationEnabled": false,

@@ -11,15 +11,6 @@
         "SubscriptionID": {
             "type": "string"
         },
-        "DNSmongo": {
-            "type": "string"
-        },
-        "DNSstorage": {
-            "type": "string"
-        },
-        "DNSredis": {
-            "type": "string"
-        },
         "Environment2": {
             "type": "string"
         }

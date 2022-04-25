@@ -11,15 +11,6 @@
         "SubscriptionID": {
             "value": "60327e1f-6528-4368-8b35-ed6e547313e6"
         },
-        "DNSmongo": {
-            "value": "privatelink.mongo.cosmos.azure.com"
-        },
-        "DNSstorage": {
-            "value": "privatelink.file.core.windows.net"
-        },
-        "DNSredis": {
-            "value": "privatelink.redis.cache.windows.net"
-        },
         "Environment2": {
             "value": "test"
         }
