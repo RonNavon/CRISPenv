@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-                "Environment": {
+        "Environment": {
             "type": "string"
         },
         "SubscriptionID": {
@@ -15,7 +15,7 @@
     "functions": [],
     "variables": {},
     "resources": [
-          {
+        {
             "name": "crisp.com",
             "type": "Microsoft.Network/dnsZones",
             "apiVersion": "2018-05-01",

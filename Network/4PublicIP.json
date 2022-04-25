@@ -15,7 +15,7 @@
     "functions": [],
     "variables": {},
     "resources": [
-         {
+        {
             "name": "[concat('PublicIP-CrispJuniper', parameters('Environment'))]",
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2020-11-01",
