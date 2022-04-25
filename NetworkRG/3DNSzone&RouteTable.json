@@ -1,0 +1,109 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+                "Environment": {
+            "type": "string"
+        },
+        "Vnet": {
+            "type": "string"
+        },
+        "SubscriptionID": {
+            "type": "string"
+        },
+        "PublicIP-CrispJuniper": {
+            "type": "string"
+        },
+        "PublicIP-JuniperPublic1": {
+            "type": "string"
+        },
+        "PublicIP-JuniperPublic2": {
+            "type": "string"
+        },
+        "PublicIP-CrispVPN": {
+            "type": "string"
+        },
+        "SUB-JuniperPrivate": {
+            "type": "string"
+        },
+        "SUB-JuniperPublic1": {
+            "type": "string"
+        },
+        "SUB-VDS": {
+            "type": "string"
+        },
+        "SUB-AKS": {
+            "type": "string"
+        },
+        "SUB-AKSInternal": {
+            "type": "string"
+        },
+        "NIC-JuniperPublic1": {
+            "type": "string"
+        },
+        "NIC-JuniperPublic2": {
+            "type": "string"
+        },
+        "NIC-CrispJuniper": {
+            "type": "string"
+        },
+        "NSG-CrispJuniper": {
+            "type": "string"
+        },
+        "NSG-AKS": {
+            "type": "string"
+        },
+        "NSG-GITLab": {
+            "type": "string"
+        },
+        "NSG-VDS": {
+            "type": "string"
+        },
+        "DNSmongo": {
+            "type": "string"
+        },
+        "DNSstorage": {
+            "type": "string"
+        },
+        "DNSredis": {
+            "type": "string"
+        },
+        "Environment2": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+          {
+            "name": "crisp.com",
+            "type": "Microsoft.Network/dnsZones",
+            "apiVersion": "2018-05-01",
+            "location": "global",
+            "properties": {
+                "zoneType": "Public"
+            }
+        },
+        {
+            "name": "[concat('VDSRoute', parameters('Environment'))]",
+            "type": "Microsoft.Network/routeTables",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "tags": {},
+            "properties": {
+                "routes": [
+                    {
+                        "name": "To_SRX_300_LAN",
+                        "properties": {
+                            "addressPrefix": "92.200.0.0/16",
+                            "nextHopType": "VirtualAppliance",
+                            "nextHopIpAddress": "10.2.0.8"
+                        }
+                    }
+                ],
+                "disableBgpRoutePropagation": true
+            }
+        }
+    ],
+    "outputs": {}
+}

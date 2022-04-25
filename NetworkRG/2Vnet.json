@@ -59,9 +59,6 @@
         "NSG-VDS": {
             "type": "string"
         },
-        "RT-VDSRoute": {
-            "type": "string"
-        },
         "DNSmongo": {
             "type": "string"
         },
@@ -338,35 +335,6 @@
                         }
                     }
                 ]
-            }
-        },
-        {
-            "name": "crisp.com",
-            "type": "Microsoft.Network/dnsZones",
-            "apiVersion": "2018-05-01",
-            "location": "global",
-            "properties": {
-                "zoneType": "Public"
-            }
-        },
-        {
-            "name": "[concat(parameters('RT-VDSRoute'), parameters('Environment'))]",
-            "type": "Microsoft.Network/routeTables",
-            "apiVersion": "2020-11-01",
-            "location": "[resourceGroup().location]",
-            "tags": {},
-            "properties": {
-                "routes": [
-                    {
-                        "name": "To_SRX_300_LAN",
-                        "properties": {
-                            "addressPrefix": "92.200.0.0/16",
-                            "nextHopType": "VirtualAppliance",
-                            "nextHopIpAddress": "10.2.0.8"
-                        }
-                    }
-                ],
-                "disableBgpRoutePropagation": true
             }
         }
     ],

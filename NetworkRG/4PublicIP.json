@@ -59,9 +59,6 @@
         "NSG-VDS": {
             "type": "string"
         },
-        "RT-VDSRoute": {
-            "type": "string"
-        },
         "DNSmongo": {
             "type": "string"
         },

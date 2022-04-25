@@ -59,9 +59,6 @@
         "NSG-VDS": {
             "value": "NSG-VDS"
         },
-        "RT-VDSRoute": {
-            "value": "VDSRoute"
-        },
         "DNSmongo": {
             "value": "privatelink.mongo.cosmos.azure.com"
         },
