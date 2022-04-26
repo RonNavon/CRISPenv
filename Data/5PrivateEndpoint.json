@@ -15,8 +15,9 @@
     "functions": [],
     "variables": {},
     "resources": [
-        {
-            /**CrispMongoDBEndpoint*/
+        /**CrispMongoDBEndpoint*/
+        /*
+             {
             "type": "Microsoft.Network/privateEndpoints",
             "apiVersion": "2020-11-01",
             "name": "[concat('CrispMongoDBEndpoint', parameters('Environment'))]",
@@ -62,8 +63,10 @@
                 ]
             }
         },
+            */
+       
         /**CrispRedisEndpoint*/
- {
+        {
             "type": "Microsoft.Network/privateEndpoints",
             "apiVersion": "2020-11-01",
             "name": "[concat('CrispRedisEndpoint', parameters('Environment'))]",
@@ -111,7 +114,7 @@
             }
         },
         /**crispvdsstorage*/
-         {
+        {
             "type": "Microsoft.Network/privateEndpoints",
             "apiVersion": "2020-11-01",
             "name": "[concat('crispvdsfilestorage', parameters('Environment2'))]",

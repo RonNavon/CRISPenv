@@ -35,22 +35,6 @@
                     "maxmemory-delta": "642"
                 }
             }
-        },
-        {
-            "type": "Microsoft.Cache/Redis/privateEndpointConnections",
-            "apiVersion": "2021-06-01",
-            "name": "[concat('CrispRedis', parameters('Environment'), '/CrispRedisEndpoint', parameters('Environment'),'.d2d2bccb-be6d-420f-9560-6d76ce368436')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Cache/Redis', concat('CrispRedis', parameters('Environment')))]"
-            ],
-            "properties": {
-                "privateEndpoint": {},
-                "privateLinkServiceConnectionState": {
-                    "status": "Approved",
-                    "description": "Auto-Approved",
-                    "actionsRequired": "None"
-                }
-            }
         }
     ],
     "outputs": {}
