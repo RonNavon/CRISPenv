@@ -95,42 +95,6 @@
                     "enabled": false
                 }
             }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts/fileServices",
-            "apiVersion": "2021-09-01",
-            "name": "[concat('crispvdsfilestorage', parameters('Environment2'), '/default')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', concat('crispvdsfilestorage', parameters('Environment2')))]"
-            ],
-            "sku": {
-                "name": "Standard_LRS",
-                "tier": "Standard"
-            },
-            "properties": {
-                "protocolSettings": {
-                    "smb": {}
-                },
-                "cors": {
-                    "corsRules": [
-                        {
-                            "allowedOrigins": [
-                                "*"
-                            ],
-                            "allowedMethods": [
-                                "GET"
-                            ],
-                            "maxAgeInSeconds": 0,
-                            "exposedHeaders": [
-                                "*"
-                            ],
-                            "allowedHeaders": [
-                                "*"
-                            ]
-                        }
-                    ]
-                }
-            }
         }
     ],
     "outputs": {}
