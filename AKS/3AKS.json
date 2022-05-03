@@ -81,7 +81,7 @@
                     "omsAgent": {
                         "enabled": true,
                         "config": {
-                            "logAnalyticsWorkspaceResourceID": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/logAnalyticsWorkspaceRG/providers/microsoft.operationalinsights/workspaces/crisploganalytics', parameters('Environment'))]"
+                            "logAnalyticsWorkspaceResourceID": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/logAnalyticsWorkspaceRG', parameters('Environment'),'/providers/microsoft.operationalinsights/workspaces/crisploganalytics', parameters('Environment'))]"
                         }
                     }
                 },
