@@ -35,7 +35,7 @@
                 "dnsPrefix": "[concat('CrispAKS-DNS', parameters('Environment'))]",
                 "agentPoolProfiles": [
                     {
-                        "name": "[concat('crisppool', parameters('Environment2'))]",
+                        "name": "crisppooljap",
                         "count": 8,
                         "vmSize": "Standard_D2as_v4",
                         "osDiskSizeGB": 128,
