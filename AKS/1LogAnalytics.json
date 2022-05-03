@@ -1,0 +1,34 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "functions": [],
+    "variables": {},
+    "resources": [
+          {
+            "name": "[concat('LogAnalyticsSolution', '[logAnalyticsWorkspace]')]",
+            "type": "Microsoft.OperationsManagement/solutions",
+            "apiVersion": "2015-11-01-preview",
+            "location": "[resourceGroup().location]",
+            "tags": {},
+            "dependsOn": [
+                "[resourceId('Microsoft.OperationalInsights/workspaces/views', 'logAnalyticsWorkspace', 'LogAnalyticsSolution')]"
+            ],
+            "properties": {
+                "workspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', 'logAnalyticsWorkspace')]",
+                "referencedResources": [],
+                "containedResources": [
+                    "[resourceId('Microsoft.OperationalInsights/workspaces/views', 'logAnalyticsWorkspace', 'LogAnalyticsSolution')]"
+                ]
+            },
+            "plan": {
+                "name": "[concat('LogAnalyticsSolution', '[logAnalyticsWorkspace]')]",
+                "version": "1.0.0.0",
+                "product": "product",
+                "publisher": "publisher",
+                "promotionCode": "code"
+            }
+        }
+    ],
+    "outputs": {}
+}

@@ -32,7 +32,7 @@
                 "dnsPrefix": "[concat('CrispAKS-DNS', parameters('Environment'))]",
                 "agentPoolProfiles": [
                     {
-                        "name": "[concat('crisppool', parameters('Environment2'))]",
+                        "name": "[concat('crisppool')]",
                         "count": 8,
                         "vmSize": "Standard_D2as_v4",
                         "osDiskSizeGB": 128,
@@ -118,7 +118,7 @@
                 },
                 "identityProfile": {
                     "kubeletidentity": {
-                        "resourceId": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Kubernetes', parameters('Environment'), '/providers/Microsoft.ManagedIdentity/userAssignedIdentities/CrispAKS', parameters('Environment'), '-agentpool', parameters('Environment2'))]",
+                        "resourceId": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Kubernetes', parameters('Environment'), '/providers/Microsoft.ManagedIdentity/userAssignedIdentities/CrispAKS', parameters('Environment'), '-agentpool')]",
                         "clientId": "817cbf2a-994d-4243-b49f-76396707b723",
                         "objectId": "70c7fa51-a5a4-4015-9a62-aedeed7d8a24"
                     }
@@ -131,7 +131,7 @@
         {
             "type": "Microsoft.ContainerService/managedClusters/agentPools",
             "apiVersion": "2021-11-01-preview",
-            "name": "[CONCAT('CrispAKS', parameters('Environment'), '/crisppool', parameters('Environment2'))]",
+            "name": "[CONCAT('CrispAKS', parameters('Environment'), '/crisppool')]",
             "dependsOn": [
                 "[resourceId('Microsoft.ContainerService/managedClusters', CONCAT('CrispAKS', parameters('Environment')))]"
             ],
