@@ -63,9 +63,6 @@
                     "adminPassword": "ZG=&7EvQv%&8",
                     "enableCSIProxy": true
                 },
-                "servicePrincipalProfile": {
-                    "clientId": "msi"
-                },
                 "addonProfiles": {
                     "azureKeyvaultSecretsProvider": {
                         "enabled": false
