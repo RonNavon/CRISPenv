@@ -10,6 +10,9 @@
         },
         "SubscriptionID": {
             "type": "string"
+        },
+        "tenantID": {
+            "type": "string"
         }
     },
     "functions": [],
@@ -28,11 +31,11 @@
                 "type": "SystemAssigned"
             },
             "properties": {
-                "kubernetesVersion": "1.21.7",
+                "enableRBAC": true,
                 "dnsPrefix": "[concat('CrispAKS-DNS', parameters('Environment'))]",
                 "agentPoolProfiles": [
                     {
-                        "name": "[concat('crisppool')]",
+                        "name": "[concat('crisppool', parameters('Environment2'))]",
                         "count": 8,
                         "vmSize": "Standard_D2as_v4",
                         "osDiskSizeGB": 128,
@@ -58,33 +61,6 @@
                         "enableFIPS": false
                     }
                 ],
-                "windowsProfile": {
-                    "adminUsername": "azureuser",
-                    "adminPassword": "ZG=&7EvQv%&8",
-                    "enableCSIProxy": true
-                },
-                "addonProfiles": {
-                    "azureKeyvaultSecretsProvider": {
-                        "enabled": false
-                    },
-                    "azurepolicy": {
-                        "enabled": true
-                    },
-                    "httpApplicationRouting": {
-                        "enabled": true,
-                        "config": {
-                            "HTTPApplicationRoutingZoneName": "[concat('AKS', parameters('Environment'),'.', resourceGroup().location, '.aksapp.io')]"
-                        }
-                    },
-                    "omsAgent": {
-                        "enabled": true,
-                        "config": {
-                            "logAnalyticsWorkspaceResourceID": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/logAnalyticsWorkspaceRG', parameters('Environment'),'/providers/microsoft.operationalinsights/workspaces/crisploganalytics', parameters('Environment'))]"
-                        }
-                    }
-                },
-                "nodeResourceGroup": "[concat('Kubernetes', parameters('Environment'))]",
-                "enableRBAC": true,
                 "networkProfile": {
                     "networkPlugin": "azure",
                     "networkPolicy": "azure",
@@ -106,57 +82,31 @@
                 },
                 "aadProfile": {
                     "managed": true,
+                    "tenantID": "[parameters('tenantID')]",
                     "adminGroupObjectIDs": [
                         "637b7a20-7e9f-4daa-a462-58811c60aea3"
-                    ],
-                    "tenantID": "d141ee51-674b-4090-9686-5f497621f783"
+                    ]
                 },
-                "apiServerAccessProfile": {
-                    "enablePrivateCluster": false
-                },
-                "identityProfile": {
-                    "kubeletidentity": {
-                        "resourceId": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Kubernetes', parameters('Environment'), '/providers/Microsoft.ManagedIdentity/userAssignedIdentities/CrispAKS', parameters('Environment'), '-agentpool')]",
-                        "clientId": "817cbf2a-994d-4243-b49f-76396707b723",
-                        "objectId": "70c7fa51-a5a4-4015-9a62-aedeed7d8a24"
+                "addonProfiles": {
+                    "azureKeyvaultSecretsProvider": {
+                        "enabled": false
+                    },
+                    "azurepolicy": {
+                        "enabled": true
+                    },
+                    "httpApplicationRouting": {
+                        "enabled": true,
+                        "config": {
+                            "HTTPApplicationRoutingZoneName": "[concat('AKS', parameters('Environment'),'.', resourceGroup().location, '.aksapp.io')]"
+                        }
+                    },
+                    "omsAgent": {
+                        "enabled": true,
+                        "config": {
+                            "logAnalyticsWorkspaceResourceID": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/logAnalyticsWorkspaceRG', parameters('Environment'),'/providers/microsoft.operationalinsights/workspaces/crisploganalytics', parameters('Environment'))]"
+                        }
                     }
-                },
-                "oidcIssuerProfile": {
-                    "enabled": false
                 }
-            }
-        },
-        {
-            "type": "Microsoft.ContainerService/managedClusters/agentPools",
-            "apiVersion": "2021-11-01-preview",
-            "name": "[CONCAT('CrispAKS', parameters('Environment'), '/crisppool')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.ContainerService/managedClusters', CONCAT('CrispAKS', parameters('Environment')))]"
-            ],
-            "properties": {
-                "count": 8,
-                "vmSize": "Standard_D2as_v4",
-                "osDiskSizeGB": 128,
-                "osDiskType": "Managed",
-                "kubeletDiskType": "OS",
-                "vnetSubnetID": "[concat('/subscriptions/', parameters('SubscriptionID'), '/resourceGroups/Network', parameters('Environment'), '/providers/Microsoft.Network/virtualNetworks/CRISPNetwork', parameters('Environment'), '/subnets/AKS', parameters('Environment'))]",
-                "maxPods": 110,
-                "type": "VirtualMachineScaleSets",
-                "availabilityZones": [
-                    "1",
-                    "2",
-                    "3"
-                ],
-                "enableAutoScaling": false,
-                "powerState": {
-                    "code": "Running"
-                },
-                "orchestratorVersion": "1.21.7",
-                "enableNodePublicIP": false,
-                "mode": "System",
-                "osType": "Linux",
-                "osSKU": "Ubuntu",
-                "enableFIPS": false
             }
         }
     ],
