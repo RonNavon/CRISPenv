@@ -28,11 +28,11 @@
                 "type": "SystemAssigned"
             },
             "properties": {
-                "kubernetesVersion": "1.20.13",
+                "kubernetesVersion": "1.21.7",
                 "dnsPrefix": "[concat('CrispAKS-DNS', parameters('Environment'))]",
                 "agentPoolProfiles": [
                     {
-                        "name": "[concat('crisppool', parameters('Environment'))]",
+                        "name": "[concat('crisppool', parameters('Environment2'))]",
                         "count": 8,
                         "vmSize": "Standard_D2as_v4",
                         "osDiskSizeGB": 128,
@@ -50,7 +50,7 @@
                         "powerState": {
                             "code": "Running"
                         },
-                        "orchestratorVersion": "1.20.13",
+                        "orchestratorVersion": "1.21.7",
                         "enableNodePublicIP": false,
                         "mode": "System",
                         "osType": "Linux",
@@ -118,7 +118,7 @@
                 },
                 "identityProfile": {
                     "kubeletidentity": {
-                        "resourceId": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Kubernetes', parameters('Environment'), '/providers/Microsoft.ManagedIdentity/userAssignedIdentities/CrispAKS', parameters('Environment'), '-agentpool')]",
+                        "resourceId": "[concat('/subscriptions/', parameters('SubscriptionID'),'/resourceGroups/Kubernetes', parameters('Environment'), '/providers/Microsoft.ManagedIdentity/userAssignedIdentities/CrispAKS', parameters('Environment'), '-agentpool', parameters('Environment2'))]",
                         "clientId": "817cbf2a-994d-4243-b49f-76396707b723",
                         "objectId": "70c7fa51-a5a4-4015-9a62-aedeed7d8a24"
                     }
@@ -131,7 +131,7 @@
         {
             "type": "Microsoft.ContainerService/managedClusters/agentPools",
             "apiVersion": "2021-11-01-preview",
-            "name": "[CONCAT('CrispAKS', parameters('Environment'), '/crisppool', parameters('Environment'))]",
+            "name": "[CONCAT('CrispAKS', parameters('Environment'), '/crisppool', parameters('Environment2'))]",
             "dependsOn": [
                 "[resourceId('Microsoft.ContainerService/managedClusters', CONCAT('CrispAKS', parameters('Environment')))]"
             ],
@@ -153,7 +153,7 @@
                 "powerState": {
                     "code": "Running"
                 },
-                "orchestratorVersion": "1.20.13",
+                "orchestratorVersion": "1.21.7",
                 "enableNodePublicIP": false,
                 "mode": "System",
                 "osType": "Linux",
