@@ -4,12 +4,6 @@
     "parameters": {
         "Environment": {
             "type": "string"
-        },
-        "Environment2": {
-            "type": "string"
-        },
-        "SubscriptionID": {
-            "type": "string"
         }
     },
     "functions": [],

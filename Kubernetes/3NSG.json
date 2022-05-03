@@ -1,0 +1,186 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "Environment": {
+            "type": "string"
+        },
+        "Environment2": {
+            "type": "string"
+        },
+        "SubscriptionID": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "apiVersion": "2020-11-01",
+            "name": "[concat('NSG-AKS-Agentpool', parameters('Environment'))]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "[CONCAT('PublicIP-Kubernetes', parameters('Environment'), 'kube-system-TCP-80-Internet')]",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "80",
+                            "sourceAddressPrefix": "Internet",
+                            "destinationAddressPrefix": "20.103.180.76",
+                            "access": "Allow",
+                            "priority": 500,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "[CONCAT('PublicIP-Kubernetes', parameters('Environment'), 'kube-system-TCP-443-Internet')]",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "443",
+                            "sourceAddressPrefix": "Internet",
+                            "destinationAddressPrefix": "20.103.180.76",
+                            "access": "Allow",
+                            "priority": 501,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "[concat('PublicIP-Kubernetes', parameters('Environment'), 'ingress-basic-TCP-80-Internet')]",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "80",
+                            "sourceAddressPrefix": "Internet",
+                            "destinationAddressPrefix": "20.71.78.105",
+                            "access": "Allow",
+                            "priority": 502,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "[concat('PublicIP-Kubernetes', parameters('Environment'), 'ingress-basic-TCP-443-Internet')]",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "443",
+                            "sourceAddressPrefix": "Internet",
+                            "destinationAddressPrefix": "20.71.78.105",
+                            "access": "Allow",
+                            "priority": 503,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "apiVersion": "2020-11-01",
+            "name": "[concat('NSG-AKS-Agentpool', parameters('Environment'), '/PublicIP-Kubernetes', parameters('Environment'), '-TCP-443-Internet')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', concat('NSG-AKS-Agentpool', parameters('Environment')))]"
+            ],
+            "properties": {
+                "protocol": "Tcp",
+                "sourcePortRange": "*",
+                "destinationPortRange": "443",
+                "sourceAddressPrefix": "Internet",
+                "destinationAddressPrefix": "20.103.180.76",
+                "access": "Allow",
+                "priority": 501,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "apiVersion": "2020-11-01",
+            "name": "[concat('NSG-AKS-Agentpool', parameters('Environment'), '/PublicIP-Kubernetes', parameters('Environment'), '-TCP-80-Internet')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', concat('NSG-AKS-Agentpool', parameters('Environment')))]"
+            ],
+            "properties": {
+                "protocol": "Tcp",
+                "sourcePortRange": "*",
+                "destinationPortRange": "80",
+                "sourceAddressPrefix": "Internet",
+                "destinationAddressPrefix": "20.103.180.76",
+                "access": "Allow",
+                "priority": 500,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "apiVersion": "2020-11-01",
+            "name": "[concat('NSG-AKS-Agentpool', parameters('Environment'), '/PublicIP-Kubernetes', parameters('Environment'), 'ingress-basic-TCP-443-Internet')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', concat('NSG-AKS-Agentpool', parameters('Environment')))]"
+            ],
+            "properties": {
+                "protocol": "Tcp",
+                "sourcePortRange": "*",
+                "destinationPortRange": "443",
+                "sourceAddressPrefix": "Internet",
+                "destinationAddressPrefix": "20.71.78.105",
+                "access": "Allow",
+                "priority": 503,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkSecurityGroups/securityRules",
+            "apiVersion": "2020-11-01",
+            "name": "[concat('NSG-AKS-Agentpool', parameters('Environment'), '/PublicIP-Kubernetes', parameters('Environment'), 'ingress-basic-TCP-80-Internet')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', concat('NSG-AKS-Agentpool', parameters('Environment')))]"
+            ],
+            "properties": {
+                "protocol": "Tcp",
+                "sourcePortRange": "*",
+                "destinationPortRange": "80",
+                "sourceAddressPrefix": "Internet",
+                "destinationAddressPrefix": "20.71.78.105",
+                "access": "Allow",
+                "priority": 502,
+                "direction": "Inbound",
+                "sourcePortRanges": [],
+                "destinationPortRanges": [],
+                "sourceAddressPrefixes": [],
+                "destinationAddressPrefixes": []
+            }
+        }
+    ],
+    "outputs": {}
+}
